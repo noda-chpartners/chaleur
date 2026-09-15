@@ -1,0 +1,407 @@
+@use "variables" as *;
+@use "reset";
+@use "mixins" as *;
+
+:root {
+	--header-h: #{$header-h};
+}
+
+html.lenis,
+html.lenis body {
+	height: auto;
+}
+
+.lenis.lenis-smooth {
+	scroll-behavior: auto !important;
+}
+
+.skip-link {
+	position: absolute;
+	left: 1rem;
+	top: -4rem;
+	z-index: 1000;
+	padding: 0.75rem 1.2rem;
+	background: $ink;
+	color: $paper;
+	font-size: 0.85rem;
+	transition: top 0.3s $ease-out;
+
+	&:focus {
+		top: 1rem;
+	}
+}
+
+[data-icon] {
+	display: inline-block;
+	width: 1em;
+	height: 1em;
+	flex-shrink: 0;
+	fill: currentColor;
+}
+
+.container {
+	@include container;
+}
+
+.section {
+	position: relative;
+	padding: 5.5rem 0;
+
+	@include mq($bp-md) {
+		padding: 8rem 0;
+	}
+}
+
+.eyebrow {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.7rem;
+	margin-bottom: 1.25rem;
+	color: $terracotta;
+	font-family: $font-serif;
+	font-size: 0.92rem;
+	font-style: italic;
+	letter-spacing: 0.18em;
+	text-transform: uppercase;
+
+	&::before {
+		content: "";
+		width: 2rem;
+		height: 1px;
+		background: $gold;
+	}
+}
+
+.heading {
+	font-family: $font-mincho;
+	font-size: clamp(1.55rem, 3.2vw, 2.35rem);
+	font-weight: 500;
+	line-height: 1.75;
+	letter-spacing: 0.04em;
+	line-break: strict;
+	word-break: keep-all;
+	overflow-wrap: anywhere;
+}
+
+.lead {
+	color: $ink-soft;
+	font-size: clamp(0.95rem, 1.4vw, 1.05rem);
+	line-height: 2.05;
+	line-break: strict;
+	word-break: keep-all;
+	overflow-wrap: anywhere;
+}
+
+.btn {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	gap: 0.65rem;
+	min-height: 3.25rem;
+	padding: 0.85rem 1.6rem;
+	border-radius: 999px;
+	font-size: 0.88rem;
+	letter-spacing: 0.12em;
+	transition: transform 0.4s $ease-out, background 0.4s $ease-out, color 0.4s $ease-out, box-shadow 0.4s $ease-out;
+
+	[data-icon] {
+		width: 1.05rem;
+		height: 1.05rem;
+	}
+
+	&:hover {
+		transform: translateY(-2px);
+	}
+
+	&--primary {
+		background: $terracotta;
+		color: $white;
+		box-shadow: 0 10px 24px rgba(212, 137, 132, 0.28);
+
+		&:hover {
+			background: $terracotta-deep;
+		}
+	}
+
+	&--ghost {
+		border: 1px solid $line-strong;
+		background: transparent;
+		color: $ink;
+
+		&:hover {
+			background: $white;
+		}
+	}
+
+	&--line {
+		background: #06c755;
+		color: #fff;
+		box-shadow: 0 10px 28px rgba(6, 199, 85, 0.2);
+
+		&:hover {
+			background: #05b34c;
+		}
+	}
+
+	&--ig {
+		background: $white;
+		color: $ink;
+		border: 1px solid $line-strong;
+
+		&:hover {
+			background: $paper;
+		}
+	}
+}
+
+.site-header {
+	position: fixed;
+	inset: 0 0 auto;
+	z-index: 80;
+	height: $header-h;
+	border-bottom: 1px solid transparent;
+	transition: background 0.45s $ease-out, border-color 0.45s $ease-out, transform 0.45s $ease-out;
+
+	&.is-scrolled {
+		background: rgba(255, 250, 248, 0.88);
+		border-color: $line;
+		backdrop-filter: blur(16px);
+	}
+
+	&.is-hidden {
+		transform: translateY(-100%);
+	}
+
+	&__inner {
+		@include container($wide);
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		height: 100%;
+	}
+
+	&__logo {
+		display: flex;
+		flex-direction: column;
+		gap: 0.05rem;
+		line-height: 1;
+
+		strong {
+			font-family: $font-serif;
+			font-size: 1.55rem;
+			font-weight: 500;
+			letter-spacing: 0.16em;
+		}
+
+		span {
+			color: $ink-mute;
+			font-size: 0.68rem;
+			letter-spacing: 0.28em;
+		}
+	}
+
+	&__nav {
+		display: none;
+		align-items: center;
+		gap: 1.8rem;
+
+		@include mq($bp-lg) {
+			display: flex;
+		}
+
+		a:not(.btn) {
+			position: relative;
+			font-size: 0.78rem;
+			letter-spacing: 0.16em;
+
+			&::after {
+				content: "";
+				position: absolute;
+				left: 0;
+				bottom: -0.35rem;
+				width: 100%;
+				height: 1px;
+				background: $terracotta;
+				transform: scaleX(0);
+				transform-origin: left;
+				transition: transform 0.35s $ease-out;
+			}
+
+			&:hover::after {
+				transform: scaleX(1);
+			}
+		}
+	}
+
+	&__toggle {
+		position: relative;
+		display: grid;
+		place-items: center;
+		width: 2.6rem;
+		height: 2.6rem;
+		color: $ink;
+
+		@include mq($bp-lg) {
+			display: none;
+		}
+
+		[data-icon] {
+			width: 1.5rem;
+			height: 1.5rem;
+		}
+	}
+
+	&__icon {
+		display: grid;
+		place-items: center;
+
+		&--close {
+			display: none;
+		}
+	}
+
+	&__toggle[aria-expanded="true"] {
+		.site-header__icon--open {
+			display: none;
+		}
+
+		.site-header__icon--close {
+			display: grid;
+		}
+	}
+}
+
+.drawer {
+	position: fixed;
+	inset: 0;
+	z-index: 90;
+	pointer-events: none;
+	background: transparent;
+	transition: background 0.45s $ease-out;
+
+	&__panel {
+		position: absolute;
+		inset: 0 0 0 auto;
+		width: min(86vw, 380px);
+		padding: 6.5rem 2rem 2rem;
+		background: $paper-soft;
+		transform: translateX(100%);
+		transition: transform 0.5s $ease-out;
+		box-shadow: -20px 0 50px rgba(63, 58, 55, 0.08);
+	}
+
+	&__nav {
+		display: grid;
+		gap: 1.4rem;
+
+		a {
+			font-family: $font-mincho;
+			font-size: 1.2rem;
+			letter-spacing: 0.14em;
+		}
+	}
+
+	&__actions {
+		display: grid;
+		gap: 0.8rem;
+		margin-top: 2.4rem;
+	}
+
+	&.is-open {
+		pointer-events: auto;
+		background: rgba(63, 58, 55, 0.18);
+
+		.drawer__panel {
+			transform: translateX(0);
+		}
+	}
+}
+
+.site-footer {
+	padding: 3.5rem 0 7rem;
+	background: $white;
+	border-top: 1px solid $line;
+	color: $ink-mute;
+
+	@include mq($bp-md) {
+		padding: 4rem 0;
+	}
+
+	&__inner {
+		@include container;
+		display: grid;
+		gap: 2rem;
+		align-items: end;
+
+		@include mq($bp-md) {
+			grid-template-columns: 1fr auto;
+		}
+	}
+
+	&__brand {
+		strong {
+			display: block;
+			font-family: $font-serif;
+			font-size: 2rem;
+			font-weight: 500;
+			letter-spacing: 0.16em;
+			color: $ink;
+		}
+
+		p {
+			margin-top: 0.4rem;
+			color: $ink-mute;
+			font-size: 0.82rem;
+			letter-spacing: 0.16em;
+		}
+	}
+
+	&__meta {
+		color: $ink-mute;
+		font-size: 0.78rem;
+		letter-spacing: 0.08em;
+		text-align: left;
+
+		@include mq($bp-md) {
+			text-align: right;
+		}
+	}
+}
+
+.fixed-cta {
+	position: fixed;
+	right: 1rem;
+	bottom: 1rem;
+	z-index: 70;
+	display: flex;
+	flex-direction: column;
+	gap: 0.6rem;
+
+	@include mq($bp-md) {
+		right: 1.5rem;
+		bottom: 1.5rem;
+	}
+
+	a {
+		display: grid;
+		place-items: center;
+		width: 3.4rem;
+		height: 3.4rem;
+		border-radius: 50%;
+		color: #fff;
+		box-shadow: 0 10px 24px rgba(63, 58, 55, 0.12);
+
+		[data-icon] {
+			width: 1.3rem;
+			height: 1.3rem;
+		}
+	}
+
+	&__line {
+		background: #06c755;
+	}
+
+	&__tel {
+		background: $terracotta;
+	}
+}

@@ -1,0 +1,68 @@
+---
+import { Icon } from 'astro-icon/components';
+
+const links = [
+	{ href: '#concept', label: '想い' },
+	{ href: '#method', label: 'メソッド' },
+	{ href: '#menu', label: 'メニュー' },
+	{ href: '#voice', label: 'お客様の声' },
+	{ href: '#access', label: 'アクセス' },
+];
+---
+
+<header class="site-header" data-header>
+	<div class="site-header__inner">
+		<a class="site-header__logo" href="#top">
+			<strong>Chaleur</strong>
+			<span>しゃるーる</span>
+		</a>
+		<nav class="site-header__nav" aria-label="ページ内メニュー">
+			{links.map((link) => <a href={link.href}>{link.label}</a>)}
+			<a class="btn btn--primary" href="https://lin.ee/WXtAYwP" target="_blank" rel="noopener noreferrer">
+				<Icon name="simple-icons:line" />
+				ご予約・相談
+			</a>
+		</nav>
+		<button class="site-header__toggle" type="button" data-menu-toggle aria-expanded="false" aria-controls="drawer">
+			<span class="sr-only">メニュー</span>
+			<span class="site-header__icon site-header__icon--open" aria-hidden="true">
+				<Icon name="ph:list" />
+			</span>
+			<span class="site-header__icon site-header__icon--close" aria-hidden="true">
+				<Icon name="ph:x" />
+			</span>
+		</button>
+	</div>
+</header>
+
+<div class="drawer" id="drawer" data-drawer>
+	<div class="drawer__panel">
+		<nav class="drawer__nav" aria-label="モバイルメニュー">
+			{links.map((link) => <a href={link.href} data-menu-link>{link.label}</a>)}
+		</nav>
+		<div class="drawer__actions">
+			<a class="btn btn--line" href="https://lin.ee/WXtAYwP" target="_blank" rel="noopener noreferrer">
+				<Icon name="simple-icons:line" />
+				LINEで相談する
+			</a>
+			<a class="btn btn--ghost" href="tel:08066754133">
+				<Icon name="ph:phone" />
+				080-6675-4133
+			</a>
+		</div>
+	</div>
+</div>
+
+<style lang="scss">
+	.sr-only {
+		position: absolute;
+		width: 1px;
+		height: 1px;
+		padding: 0;
+		margin: -1px;
+		overflow: hidden;
+		clip: rect(0, 0, 0, 0);
+		white-space: nowrap;
+		border: 0;
+	}
+</style>

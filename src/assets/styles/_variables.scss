@@ -1,0 +1,27 @@
+$font-serif: "Cormorant Garamond", "Shippori Mincho", "Hiragino Mincho ProN", "Yu Mincho", serif;
+$font-mincho: "Shippori Mincho", "Hiragino Mincho ProN", "Yu Mincho", serif;
+$font-sans: "Zen Kaku Gothic New", "Hiragino Kaku Gothic ProN", "Noto Sans JP", sans-serif;
+
+$paper: #fffaf8;
+$paper-deep: #f3ece7;
+$paper-soft: #ffffff;
+$white: #ffffff;
+$ink: #3f3a37;
+$ink-soft: #6d6661;
+$ink-mute: #9a928b;
+$terracotta: #d48984;
+$terracotta-deep: #c56f6a;
+$gold: #c9b496;
+$gold-deep: #b49a78;
+$line: rgba(63, 58, 55, 0.1);
+$line-strong: rgba(63, 58, 55, 0.18);
+
+$header-h: 5rem;
+$container: 1180px;
+$wide: 1440px;
+
+$ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+
+$bp-md: 768px;
+$bp-lg: 1080px;
+$bp-xl: 1280px;
