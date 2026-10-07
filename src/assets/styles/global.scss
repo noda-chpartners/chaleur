@@ -6,6 +6,11 @@
 	--header-h: #{$header-h};
 }
 
+body {
+	font-size: 1.0625rem;
+	line-height: 1.95;
+}
+
 html.lenis,
 html.lenis body {
 	height: auto;
@@ -45,10 +50,10 @@ html.lenis body {
 
 .section {
 	position: relative;
-	padding: 5.5rem 0;
+	padding: 5.25rem 0;
 
 	@include mq($bp-md) {
-		padding: 8rem 0;
+		padding: 7.5rem 0;
 	}
 }
 
@@ -74,22 +79,20 @@ html.lenis body {
 
 .heading {
 	font-family: $font-mincho;
-	font-size: clamp(1.55rem, 3.2vw, 2.35rem);
+	font-size: clamp(1.85rem, 4.6vw, 2.65rem);
 	font-weight: 500;
-	line-height: 1.75;
-	letter-spacing: 0.04em;
+	line-height: 1.6;
+	letter-spacing: 0.06em;
 	line-break: strict;
 	word-break: keep-all;
-	overflow-wrap: anywhere;
 }
 
 .lead {
 	color: $ink-soft;
-	font-size: clamp(0.95rem, 1.4vw, 1.05rem);
-	line-height: 2.05;
+	font-size: 1.0625rem;
+	line-height: 2.1;
 	line-break: strict;
 	word-break: keep-all;
-	overflow-wrap: anywhere;
 }
 
 .btn {
@@ -116,11 +119,44 @@ html.lenis body {
 	&--primary {
 		background: $terracotta;
 		color: $white;
-		box-shadow: 0 10px 24px rgba(212, 137, 132, 0.28);
+		box-shadow: 0 12px 28px rgba(163, 77, 36, 0.22);
 
 		&:hover {
 			background: $terracotta-deep;
 		}
+	}
+
+	&--gift {
+		width: min(100%, 22.5rem);
+		min-height: 4.4rem;
+		padding: 0.9rem 1.3rem;
+		background: $terracotta;
+		color: $white;
+		font-size: 1rem;
+		font-weight: 500;
+		letter-spacing: 0.04em;
+		line-height: 1.5;
+		text-align: left;
+		white-space: normal;
+		box-shadow: 0 14px 32px rgba(163, 77, 36, 0.22);
+
+		span {
+			display: block;
+		}
+
+		[data-icon] {
+			width: 1.4rem;
+			height: 1.4rem;
+		}
+
+		&:hover {
+			background: $terracotta-deep;
+		}
+	}
+
+	&:focus-visible {
+		outline: 2px solid $gold-deep;
+		outline-offset: 3px;
 	}
 
 	&--ghost {
@@ -163,51 +199,43 @@ html.lenis body {
 	transition: background 0.45s $ease-out, border-color 0.45s $ease-out, transform 0.45s $ease-out;
 
 	&.is-scrolled {
-		background: rgba(255, 250, 248, 0.88);
+		background: rgba(251, 247, 241, 0.92);
 		border-color: $line;
 		backdrop-filter: blur(16px);
 	}
 
-	&.is-hidden {
-		transform: translateY(-100%);
-	}
-
 	&__inner {
 		@include container($wide);
+		position: relative;
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
 		height: 100%;
 	}
 
-	&__logo {
-		display: flex;
-		flex-direction: column;
-		gap: 0.05rem;
+	&__mark {
+		position: absolute;
+		left: 50%;
+		top: 50%;
+		z-index: 1;
+		color: $gold-deep;
+		font-family: $font-serif;
+		font-size: 1.35rem;
+		font-weight: 500;
+		letter-spacing: 0.18em;
 		line-height: 1;
+		transform: translate(-50%, -50%);
+	}
 
-		strong {
-			font-family: $font-serif;
-			font-size: 1.55rem;
-			font-weight: 500;
-			letter-spacing: 0.16em;
-		}
-
-		span {
-			color: $ink-mute;
-			font-size: 0.68rem;
-			letter-spacing: 0.28em;
-		}
+	&.is-menu-open {
+		z-index: 100;
+		background: rgba(251, 247, 241, 0.96);
 	}
 
 	&__nav {
 		display: none;
 		align-items: center;
 		gap: 1.8rem;
-
-		@include mq($bp-lg) {
-			display: flex;
-		}
 
 		a:not(.btn) {
 			position: relative;
@@ -234,16 +262,16 @@ html.lenis body {
 	}
 
 	&__toggle {
-		position: relative;
+		position: absolute;
+		right: 0.15rem;
+		top: 50%;
+		z-index: 2;
 		display: grid;
 		place-items: center;
 		width: 2.6rem;
 		height: 2.6rem;
 		color: $ink;
-
-		@include mq($bp-lg) {
-			display: none;
-		}
+		transform: translateY(-50%);
 
 		[data-icon] {
 			width: 1.5rem;
@@ -303,8 +331,12 @@ html.lenis body {
 
 	&__actions {
 		display: grid;
-		gap: 0.8rem;
+		gap: 1rem;
 		margin-top: 2.4rem;
+
+		.btn--gift {
+			width: 100%;
+		}
 	}
 
 	&.is-open {
@@ -318,13 +350,13 @@ html.lenis body {
 }
 
 .site-footer {
-	padding: 3.5rem 0 7rem;
-	background: $white;
+	padding: 3.5rem 0 4.5rem;
+	background: $paper-deep;
 	border-top: 1px solid $line;
-	color: $ink-mute;
+	color: $ink-soft;
 
 	@include mq($bp-md) {
-		padding: 4rem 0;
+		padding: 4.5rem 0;
 	}
 
 	&__inner {
@@ -349,59 +381,34 @@ html.lenis body {
 		}
 
 		p {
-			margin-top: 0.4rem;
-			color: $ink-mute;
-			font-size: 0.82rem;
-			letter-spacing: 0.16em;
+			margin-top: 0.45rem;
+			color: $ink-soft;
+			font-size: 1rem;
+			letter-spacing: 0.08em;
 		}
 	}
 
 	&__meta {
-		color: $ink-mute;
-		font-size: 0.78rem;
-		letter-spacing: 0.08em;
+		display: grid;
+		gap: 0.45rem;
+		color: $ink-soft;
+		font-size: 1rem;
+		line-height: 1.8;
+		letter-spacing: 0.04em;
 		text-align: left;
+
+		address {
+			display: grid;
+			gap: 0.45rem;
+			font-style: normal;
+		}
+
+		a {
+			color: $ink;
+		}
 
 		@include mq($bp-md) {
 			text-align: right;
 		}
-	}
-}
-
-.fixed-cta {
-	position: fixed;
-	right: 1rem;
-	bottom: 1rem;
-	z-index: 70;
-	display: flex;
-	flex-direction: column;
-	gap: 0.6rem;
-
-	@include mq($bp-md) {
-		right: 1.5rem;
-		bottom: 1.5rem;
-	}
-
-	a {
-		display: grid;
-		place-items: center;
-		width: 3.4rem;
-		height: 3.4rem;
-		border-radius: 50%;
-		color: #fff;
-		box-shadow: 0 10px 24px rgba(63, 58, 55, 0.12);
-
-		[data-icon] {
-			width: 1.3rem;
-			height: 1.3rem;
-		}
-	}
-
-	&__line {
-		background: #06c755;
-	}
-
-	&__tel {
-		background: $terracotta;
 	}
 }

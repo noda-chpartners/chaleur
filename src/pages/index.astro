@@ -1,478 +1,433 @@
 ---
 import { Image } from 'astro:assets';
-import { Icon } from 'astro-icon/components';
 import Layout from '../layouts/Layout.astro';
+import LineCta from '../components/LineCta.astro';
 import '../assets/styles/home.scss';
 
-import heroPortrait from '../assets/images/hero-fresh.jpg';
-import backPortrait from '../assets/images/P1000375.jpeg';
-import brightInterior from '../assets/images/bright-interior.jpg';
-import sessionCounsel from '../assets/images/line_oa_chat_260915_100755_group_2.jpg';
-import sessionStretch from '../assets/images/line_oa_chat_260915_100755_group_0.jpg';
-import sessionTrain from '../assets/images/line_oa_chat_260915_100755_group_1.jpg';
-import sessionBack from '../assets/images/1789434548.png';
-import freshWalk from '../assets/images/fresh-walk.jpg';
+import checkBack from '../assets/images/line_oa_chat_261006_120835.jpg';
+import chairSpine from '../assets/images/line_oa_chat_261006_120807.jpg';
+import pelvisGuide from '../assets/images/1789434548.png';
+import standingLine from '../assets/images/line_oa_chat_261006_120810.jpg';
+import shoulderBack from '../assets/images/line_oa_chat_261006_120830.jpg';
+import studio from '../assets/images/line_oa_chat_261006_120823.jpg';
+import sessionTalk from '../assets/images/line_oa_chat_261006_120819.jpg';
+import profileScene from '../assets/images/line_oa_chat_261006_120839.jpg';
+
+const hpUrl = 'https://sites.google.com/view/chaleur-shisei/%E3%83%9B%E3%83%BC%E3%83%A0';
+
+const pageTitle = '川口の姿勢サロン しゃるーる｜疲れた日でも、1日10分から';
+const pageDescription =
+	'川口市並木の姿勢サロン「しゃるーる」（Chaleur）。疲れた日でも、1日10分から。姿勢・背中・ヒップの美軸を知る無料5大特典を、公式LINEで受け取れます。';
+
+const jsonLd = {
+	'@context': 'https://schema.org',
+	'@type': 'HealthAndBeautyBusiness',
+	name: '姿勢サロン しゃるーる',
+	alternateName: 'Chaleur',
+	description: pageDescription,
+	telephone: '+81484440647',
+	url: hpUrl,
+	sameAs: ['https://www.instagram.com/chaleur_bishisei', hpUrl],
+	address: {
+		'@type': 'PostalAddress',
+		streetAddress: '並木1-9-11',
+		addressLocality: '川口市',
+		addressRegion: '埼玉県',
+		addressCountry: 'JP',
+	},
+	areaServed: {
+		'@type': 'City',
+		name: '川口市',
+	},
+	openingHoursSpecification: [
+		{
+			'@type': 'OpeningHoursSpecification',
+			dayOfWeek: ['Monday', 'Tuesday', 'Thursday', 'Friday'],
+			opens: '10:00',
+			closes: '19:00',
+		},
+		{
+			'@type': 'OpeningHoursSpecification',
+			dayOfWeek: ['Saturday', 'PublicHolidays'],
+			opens: '10:00',
+			closes: '18:00',
+		},
+	],
+};
 
 const concerns = [
 	{
 		num: '01',
 		title: 'マッサージをしても、すぐ戻る',
-		text: 'ほぐしても数日で肩や腰が重くなるのは、背骨と骨盤、股関節の重心がずれたまま過ごしているからかもしれません。',
+		text: 'ほぐしたあとに、また肩や腰が重くなる。背骨と骨盤、足の重心がずれたまま過ごしているのかもしれません。',
 	},
 	{
 		num: '02',
 		title: '後ろ姿に、自信が持てない',
-		text: '背中の丸み、首元、腰まわり。自分では見えない場所にこそ、疲れと年齢は現れます。',
+		text: '背中の丸み、首元、腰まわり。自分では見えない場所にこそ、疲れは出やすいものです。',
 	},
 	{
 		num: '03',
-		title: '肩こりや腰痛が、日常になっている',
-		text: '「もう歳だから」と手放す前に。身体の使い方を整えれば、不調は変わっていきます。',
+		title: '肩や腰の重さが、いつもの景色',
+		text: 'その重さを、いったん預ける場所がほしい。まずは自分の姿勢の癖に気づくことから始められます。',
 	},
 	{
 		num: '04',
 		title: '頑張っても、身体がついてこない',
-		text: '激しく追い込む必要はありません。歪みを整え、正しく使える状態を身体に記憶させることが、大人の答えです。',
+		text: '激しく追い込む必要はありません。歪みに気づき、日常で使える感覚を思い出していくことが、しゃるーるの考え方です。',
 	},
 ];
 
-const flow = [
+const gifts = [
 	{
-		step: '01',
-		title: 'ご予約',
-		text: 'LINEまたはお電話から、ご都合のよい日時をお知らせください。完全予約制です。',
+		num: '01',
+		title: '3分でわかる！美軸姿勢セルフチェック',
+		doing: '横と後ろから、頭・肩・骨盤・足の位置を見ていきます。目安は3分です。',
+		notice: '体重がどちらの足に乗っているか、肩が内側に入っていないか。自分の美軸の現在地がわかります。',
+		note: 'からだの状態を知るためのチェックです。診断ではありません。',
+		image: checkBack,
+		alt: '後ろから肩と腰の位置を確かめる立ち姿',
+		caption: '後ろから、自分のラインを見る',
 	},
 	{
-		step: '02',
-		title: 'カウンセリング',
-		text: '姿勢やお悩み、暮らし方を丁寧に伺い、今の身体の状態を一緒に確認します。',
+		num: '02',
+		title: 'イスでできる「腸腰筋＆背骨」エクササイズ',
+		doing: '椅子に座ったまま、股関節の前側（腸腰筋）と背骨を、ゆっくり動かします。',
+		notice: '座りっぱなしで固まりやすい脚の付け根と、丸まりやすい背中が、どのようにつながっているかに気づきます。',
+		note: 'この回は、椅子に座って行います。',
+		image: chairSpine,
+		alt: '椅子に座って背骨を伸ばしている様子',
+		caption: '椅子に座って、背骨を動かす',
 	},
 	{
-		step: '03',
-		title: '整える',
-		text: '手の温もりで骨格と股関節を整え、不調の根源にやさしく向き合います。',
+		num: '03',
+		title: 'イス＋ペットボトルでできる「骨盤底筋」エクササイズ',
+		doing: '椅子に座り、ご自宅のペットボトルを支えにしながら、骨盤底筋へ意識を向けて小さく動かします。',
+		notice: '息を吐いたときの骨盤の位置と、下腹部の力の入れ具合がわかります。',
+		note: '強い負荷は使いません。写真は骨盤の位置に意識を向けている様子です。特典そのものは、椅子とペットボトルで行います。',
+		image: pelvisGuide,
+		alt: '骨盤の位置に手を添え、姿勢を見ている様子',
+		caption: '骨盤の位置に、意識を向ける',
 	},
 	{
-		step: '04',
-		title: '定着させる',
-		text: '無理のない運動で正しい姿勢を身体に記憶させ、日常へ持ち帰れる習慣をつくります。',
+		num: '04',
+		title: '重心から変える「立ち方・歩き方」',
+		doing: '足裏のどこに体重があるかを手がかりに、立ち方と歩き方を見直します。',
+		notice: '骨盤の位置と、足の着き方。日常の一歩で思い出せるポイントが見つかります。',
+		note: '',
+		image: standingLine,
+		alt: '横から見た、頭・肩・骨盤・足がつながる立ち姿',
+		caption: '横から、立ち方の軸を見る',
+	},
+	{
+		num: '05',
+		title: '肩まわりスッキリストレッチ',
+		doing: '肩甲骨のまわりを、気持ちのよい範囲でゆっくり伸ばします。',
+		notice: '肩が前に入っている感覚と、肩の位置が戻ったときの背中の広がりがわかります。',
+		note: '',
+		image: shoulderBack,
+		alt: '後ろから見た、肩甲骨まわりの立ち姿',
+		caption: '肩甲骨のまわりを、ゆっくり伸ばす',
+	},
+];
+
+const homeSteps = [
+	{
+		num: '01',
+		title: '気づく',
+		text: 'まずはセルフチェック。頭、肩、骨盤、足が、今どこにあるかを知ります。',
+	},
+	{
+		num: '02',
+		title: 'その日のひとつを選ぶ',
+		text: '椅子で背骨を動かす日、ペットボトルを添えて骨盤底筋を感じる日、立ち方を思い出す日。全部を一度にやらなくて大丈夫です。',
+	},
+	{
+		num: '03',
+		title: '10分を目安に続ける',
+		text: '「1日10分」は、習慣の目安です。疲れた日はもっと短く、余裕のある日は少し丁寧に。動画の長さは内容ごとに違います。',
+	},
+];
+
+const receiveSteps = [
+	{
+		num: '01',
+		title: '公式LINEを開く',
+		text: 'このページのボタンから、しゃるーるの公式LINEへ進みます。',
+	},
+	{
+		num: '02',
+		title: '友だち追加をする',
+		text: '追加すると、トーク画面でご案内が届きます。',
+	},
+	{
+		num: '03',
+		title: '無料5大特典を受け取る',
+		text: 'セルフチェック、腸腰筋と背骨、骨盤底筋、立ち方・歩き方、肩まわり。ページと同じ名称でお届けします。',
 	},
 ];
 ---
 
-<Layout>
+<Layout title={pageTitle} description={pageDescription} jsonLd={jsonLd}>
 	<main id="main">
 		<section class="hero" id="top">
-			<div class="hero__grid">
-				<div class="hero__copy" data-reveal>
-					<p class="hero__place">
-						<span>Kawaguchi / Namiki</span>
-						<span>完全予約制</span>
-						<span>1名様限定</span>
-					</p>
-					<p class="hero__brand">Chaleur</p>
-					<span class="hero__kana">しゃるーる</span>
-					<h1 class="hero__title">10年後も、軽やかに。<br />整えていく、わたしの美姿勢。</h1>
-					<p class="hero__text">
-						股関節と骨格から整える、姿勢改善専門サロン。身体も心も温まり、前を向いて歩き出せる場所でありたい。
-					</p>
-					<div class="hero__actions">
-						<a class="btn btn--primary" href="https://lin.ee/WXtAYwP" target="_blank" rel="noopener noreferrer">
-							<Icon name="simple-icons:line" />
-							LINEで相談する
-						</a>
-						<a class="btn btn--ghost" href="#menu">
-							メニューを見る
-							<Icon name="ph:arrow-right" />
-						</a>
-					</div>
-				</div>
-				<div class="hero__visual">
-					<figure class="hero__photo hero__photo--main" data-parallax>
-						<Image
-							src={backPortrait}
-							alt="美しい後ろ姿と、整った肩のライン"
-							widths={[480, 768, 1200, 1600]}
-							sizes="(max-width: 1080px) 60vw, 40vw"
-							quality={80}
-						/>
-						<figcaption class="hero__caption">Back beauty</figcaption>
-					</figure>
-					<figure class="hero__photo hero__photo--sub" data-parallax>
-						<Image
-							src={heroPortrait}
-							alt="穏やかな光のなかで微笑む女性"
-							widths={[360, 640, 960]}
-							sizes="(max-width: 1080px) 40vw, 24vw"
-							quality={78}
-						/>
-					</figure>
-				</div>
-			</div>
-			<div class="hero__bar">
-				<span><Icon name="ph:map-pin" />川口市並木1-9-11</span>
-				<span><Icon name="ph:train" />西川口駅 徒歩12分 / 川口駅 徒歩18分</span>
-				<span><Icon name="ph:clock" />平日 10:00-19:00 / 土祝 10:00-18:00</span>
-				<span><Icon name="ph:calendar-blank" />定休日 水曜・日曜</span>
-			</div>
-		</section>
-
-		<section class="section concept" id="concept">
-			<div class="concept__grid">
-				<div class="concept__images">
-					<figure class="concept__image concept__image--tall" data-parallax data-reveal>
-						<Image
-							src={brightInterior}
-							alt="明るい光の入るサロン空間"
-							widths={[480, 800, 1200]}
-							sizes="(max-width: 1080px) 55vw, 28vw"
-							quality={78}
-						/>
-					</figure>
-					<figure class="concept__image concept__image--wide" data-parallax data-reveal>
-						<Image
-							src={sessionCounsel}
-							alt="笑顔で向き合うカウンセリング"
-							widths={[400, 720, 1080]}
-							sizes="(max-width: 1080px) 40vw, 22vw"
-							quality={78}
-						/>
-					</figure>
-				</div>
-				<div data-reveal>
-					<p class="eyebrow">Concept</p>
-					<h2 class="heading">温かさが、<br />広がっていく場所。</h2>
-					<p class="concept__quote">
-						しゃるーるは、フランス語の「温かさ」。<br />
-						身体を整えるだけの場所ではなく、<br />
-						毎日を頑張る女性にとってのパワースポットでありたい。
-					</p>
-					<div class="concept__body lead">
-						<p>
-							自分を大切にできるようになると、家族や大切な人にも、もっと優しくなれる。そして、その笑顔が周りにも広がっていく。そんな小さな幸せの循環を、ここからつくっていきたいと思っています。
-						</p>
-						<p>
-							いつまでも、自分らしく。若々しく、しなやかに。そして、笑顔で毎日を楽しめる身体へ。あなたのこれからの人生が、もっと軽やかで、もっと楽しいものになるように。
-						</p>
-						<p>
-							一人の笑顔が、その人の大切な人へ。そして、その先へ。温かさが広がっていく場所でありたい。それが、このサロンを「しゃるーる」と名付けた理由です。
-						</p>
-					</div>
-				</div>
+			<span class="hero__bubble hero__bubble--lg" aria-hidden="true"></span>
+			<span class="hero__bubble hero__bubble--md" aria-hidden="true"></span>
+			<span class="hero__bubble hero__bubble--sm" aria-hidden="true"></span>
+			<div class="hero__stage">
+				<figure class="hero__portrait">
+					<Image
+						src={checkBack}
+						alt="後ろから見た、肩と背中のライン"
+						widths={[480, 768, 1200]}
+						sizes="(max-width: 1279px) 62vw, 34vw"
+						quality={80}
+						loading="eager"
+						fetchpriority="high"
+					/>
+				</figure>
+				<h1 class="hero__panel">
+					<span>疲れた日でも</span>
+					<span>１日１０分から</span>
+				</h1>
+				<p class="hero__lines">
+					<span>姿勢をシュッと</span>
+					<span>背中をシュッと</span>
+					<span>ヒップをキュッと</span>
+				</p>
+				<figure class="hero__thumb hero__thumb--wide">
+					<Image
+						src={studio}
+						alt="木の床と鏡のあるスタジオ"
+						widths={[360, 640]}
+						sizes="(max-width: 1279px) 46vw, 28vw"
+						quality={74}
+					/>
+				</figure>
+				<figure class="hero__thumb hero__thumb--small">
+					<Image
+						src={chairSpine}
+						alt="椅子に座って背骨を動かしている様子"
+						widths={[320, 560]}
+						sizes="(max-width: 1279px) 36vw, 22vw"
+						quality={74}
+					/>
+				</figure>
+				<p class="hero__scroll" aria-hidden="true">scroll</p>
+				<a class="hero__fab" href="https://lin.ee/WXtAYwP" target="_blank" rel="noopener noreferrer">
+					<span>美軸の<br />無料5大特典を<br />LINEで<br />受け取る</span>
+				</a>
 			</div>
 		</section>
 
 		<section class="section concerns" id="concerns">
 			<div class="concerns__head" data-reveal>
 				<p class="eyebrow">For you</p>
-				<h2 class="heading">こんなお気持ちを、<br />抱えていませんか。</h2>
+				<h2 class="heading">こんな感覚を、<br />抱えていませんか。</h2>
 				<p class="lead">
-					家事に、仕事に、家族のために。これまでたくさんの時間を、誰かのために頑張ってきた女性たちへ。50代からの身体の変化は、これまでの頑張りの証でもあります。
+					家事に、仕事に、誰かのために。身体のことは、あとまわしになりやすいものです。気になっている箇所が、ひとつでもあれば、そこが入り口です。
 				</p>
 			</div>
-			<ul class="concerns__list">
+			<ol class="concerns__list">
 				{
 					concerns.map((item) => (
 						<li class="concerns__item" data-reveal>
 							<span class="concerns__num">{item.num}</span>
-							<h3>{item.title}</h3>
-							<p>{item.text}</p>
-						</li>
-					))
-				}
-			</ul>
-		</section>
-
-		<section class="section method" id="method">
-			<div class="method__head" data-reveal>
-				<p class="eyebrow">Method</p>
-				<h2 class="heading">整えて、定着させる。<br />ホリスティック・ボディケア。</h2>
-				<p class="lead">
-					手の温もりで骨格や股関節の歪みを整え、正しい姿勢をキープするための無理のない運動を組み合わせます。一時しのぎではない、一生モノの身体づくりです。
-				</p>
-			</div>
-			<div class="method__cards">
-				<article class="method__card" data-reveal>
-					<figure data-parallax>
-						<Image
-							src={sessionStretch}
-							alt="肩まわりをやさしく導くストレッチ"
-							widths={[480, 800, 1200]}
-							sizes="(max-width: 1080px) 100vw, 46vw"
-							quality={78}
-						/>
-					</figure>
-					<div>
-						<span class="method__label">Align</span>
-						<h3>骨格を、整える。</h3>
-						<p>
-							整体手技で、長年の生活習慣で歪んだ骨格や緊張した筋肉を丁寧に解きほぐします。股関節に重心が乗り、背骨と骨盤が本来の位置へ戻ると、余計な力を使わずにしなやかな姿勢を保てるようになります。
-						</p>
-					</div>
-				</article>
-				<article class="method__card" data-reveal>
-					<figure data-parallax>
-						<Image
-							src={sessionTrain}
-							alt="マットの上で行う姿勢改善トレーニング"
-							widths={[480, 800, 1200]}
-							sizes="(max-width: 1080px) 100vw, 46vw"
-							quality={78}
-						/>
-					</figure>
-					<div>
-						<span class="method__label">Retain</span>
-						<h3>姿勢を、定着させる。</h3>
-						<p>
-							激しいトレーニングではありません。普段使えていない筋肉に心地よい刺激を与え、整えた姿勢を身体に記憶させていく、大人の女性のための無理のないエクササイズです。
-						</p>
-					</div>
-				</article>
-			</div>
-			<div class="method__note" data-reveal>
-				<p>
-					<strong>施術で整え、軽い運動で定着させる。</strong>このふたつのアプローチがあるからこそ、「マッサージに行ってもすぐ戻ってしまう」状態から、ずっと軽やかで美しい身体へ。姿勢が変われば、呼吸が深くなり、毎日がもっと楽しくなります。
-				</p>
-			</div>
-		</section>
-
-		<section class="section story" id="story">
-			<div class="story__grid">
-				<div class="story__visual">
-					<figure class="story__frame" data-parallax data-reveal>
-						<Image
-							src={sessionBack}
-							alt="鏡の前で姿勢を確認するセッション"
-							widths={[480, 800, 1200]}
-							sizes="(max-width: 1080px) 100vw, 46vw"
-							quality={78}
-						/>
-					</figure>
-					<figure class="story__float" data-reveal>
-						<Image
-							src={freshWalk}
-							alt="明るい日差しのなかを歩く女性"
-							widths={[360, 640]}
-							sizes="(max-width: 1080px) 40vw, 18vw"
-							quality={76}
-						/>
-					</figure>
-				</div>
-				<div data-reveal>
-					<p class="eyebrow">Owner</p>
-					<h2 class="heading">私が、しゃるーるを<br />始めた理由。</h2>
-					<p class="story__profile">
-						<strong>Aya Nakagawa</strong>
-						代表 / 姿勢改善専門家　トレーナー歴15年
-					</p>
-					<div class="story__body">
-						<p>
-							シングルマザーとして17年、子育てと仕事に追われる日々を歩んできました。30代までは頑張ればなんとかなると思い、身体を追い込んでいました。40代後半、強い疲労感や長引く不調、隠しきれない体型の崩れに直面したとき、「このまま追い込むだけでいいのだろうか」と立ち止まりました。
-						</p>
-						<p>
-							出会ったのは、無理に鍛えるのではなく、骨格や股関節の歪みを整え、正しく身体を使えるようにするコンディショニング。痛みがすっと軽くなり、心まで晴れやかになっていくのを、私自身が実感しました。
-						</p>
-						<p>
-							50代・60代からでも、身体は必ず変えられます。年齢とともに訪れる変化を、「もう歳だから」と諦めてほしくありません。これからは、ご自身の身体と優しく丁寧に向き合い、10年後も軽やかで美しい身体を、一緒に取り戻していきましょう。
-						</p>
-					</div>
-				</div>
-			</div>
-		</section>
-
-		<section class="section menu" id="menu">
-			<div class="menu__head" data-reveal>
-				<p class="eyebrow">Menu</p>
-				<h2 class="heading">おひとりに、<br />丁寧に寄り添うプラン。</h2>
-				<p class="lead">席数は1名。お一人おひとりと向き合うため、予約制でご案内しています。</p>
-			</div>
-			<div class="menu__list">
-				<article class="menu__card" data-reveal>
-					<figure data-parallax>
-						<Image
-							src={sessionStretch}
-							alt="姿勢を整えるセッション"
-							widths={[480, 800, 1200]}
-							sizes="(max-width: 1080px) 100vw, 46vw"
-							quality={76}
-						/>
-					</figure>
-					<div>
-						<p class="menu__plan">Plan 01</p>
-						<h3 class="menu__name">姿勢根本改善・骨格矯正プラン</h3>
-						<p class="menu__price"><span class="menu__price-num">33</span><span class="menu__price-unit">万円</span></p>
-						<p class="menu__desc">
-							骨格と股関節から身体の軸を見直し、不調の根源へ向き合うプラン。手技で整え、正しい姿勢を日常に戻す土台をつくります。
-						</p>
-						<ul class="menu__tags">
-							<li>骨格矯正</li>
-							<li>姿勢分析</li>
-							<li>根本改善</li>
-						</ul>
-					</div>
-				</article>
-				<article class="menu__card" data-reveal>
-					<figure data-parallax>
-						<Image
-							src={backPortrait}
-							alt="整った後ろ姿のライン"
-							widths={[480, 800, 1200]}
-							sizes="(max-width: 1080px) 100vw, 46vw"
-							quality={76}
-						/>
-					</figure>
-					<div>
-						<p class="menu__plan">Plan 02</p>
-						<h3 class="menu__name">後ろ姿革命プラン</h3>
-						<p class="menu__price"><span class="menu__price-num">42</span><span class="menu__price-unit">万円</span></p>
-						<p class="menu__desc">
-							骨格矯正にパーソナルトレーニングを加えたプラン。人から見られる後ろ姿を、しなやかで品のあるラインへ整えていきます。
-						</p>
-						<ul class="menu__tags">
-							<li>骨格矯正</li>
-							<li>パーソナルトレーニング</li>
-							<li>後ろ姿ケア</li>
-						</ul>
-					</div>
-				</article>
-			</div>
-			<p class="menu__note" data-reveal>料金の詳細や回数、開始時期は、カウンセリング時にご案内します。まずはお気軽にご相談ください。</p>
-		</section>
-
-		<section class="section voice" id="voice">
-			<div class="voice__head" data-reveal>
-				<p class="eyebrow">Voice</p>
-				<h2 class="heading">ここを起点に、<br />日常が軽くなった声。</h2>
-			</div>
-			<div class="voice__list">
-				<article class="voice__card" data-reveal>
-					<h3>長年の肩こり・腰痛から解放され、生き方まで前向きになりました。</h3>
-					<p>
-						マッサージに通っても数日で元通り。「体質だから仕方ない」と諦めていました。股関節の重心から整える考えに出会い、整体だけでなく自分の力で姿勢を定着させるうち、3ヶ月を過ぎた頃には肩も腰も嘘のように軽くなりました。
-					</p>
-					<footer>50代前半 / 会社員</footer>
-				</article>
-				<article class="voice__card" data-reveal>
-					<h3>背中とお尻のラインが整い、洋服を着るのが毎朝楽しみです。</h3>
-					<p>
-						試着室で自分の後ろ姿を見たときのショックがきっかけでした。姿勢改善と集中ケアを重ねるうち、背中がすっきりし、お尻の位置も上がって驚きました。友人から「後ろ姿が若返った」と言われたのが、いちばん嬉しかったです。
-					</p>
-					<footer>40代後半 / 主婦</footer>
-				</article>
-			</div>
-		</section>
-
-		<section class="section gallery" aria-label="サロンの様子">
-			<div class="gallery__track">
-				<figure class="gallery__item" data-parallax>
-					<Image src={sessionStretch} alt="肩まわりをやさしく導くストレッチ" widths={[400, 720]} sizes="78vw" quality={74} />
-				</figure>
-				<figure class="gallery__item gallery__item--wide" data-parallax>
-					<Image src={sessionTrain} alt="マットの上で行う姿勢改善トレーニング" widths={[400, 720]} sizes="78vw" quality={74} />
-				</figure>
-				<figure class="gallery__item" data-parallax>
-					<Image src={sessionCounsel} alt="身体の状態を確認し合うカウンセリング" widths={[400, 720]} sizes="78vw" quality={74} />
-				</figure>
-				<figure class="gallery__item gallery__item--wide" data-parallax>
-					<Image src={brightInterior} alt="明るい光の入るサロン空間" widths={[400, 720]} sizes="78vw" quality={74} />
-				</figure>
-			</div>
-		</section>
-
-		<section class="section flow" id="flow">
-			<div class="flow__head" data-reveal>
-				<p class="eyebrow">Flow</p>
-				<h2 class="heading">はじめての方も、<br />安心の流れ。</h2>
-			</div>
-			<ol class="flow__list">
-				{
-					flow.map((item) => (
-						<li class="flow__item" data-reveal>
-							<span class="flow__step">{item.step}</span>
-							<h3>{item.title}</h3>
-							<p>{item.text}</p>
+							<div>
+								<h3>{item.title}</h3>
+								<p>{item.text}</p>
+							</div>
 						</li>
 					))
 				}
 			</ol>
 		</section>
 
-		<section class="section access" id="access">
-			<div class="access__grid">
-				<div data-reveal>
-					<p class="eyebrow">Access</p>
-					<h2 class="heading">川口市並木で、<br />お待ちしています。</h2>
-					<dl class="access__list">
-						<div class="access__row">
-							<dt><Icon name="ph:house-simple" />店舗名</dt>
-							<dd>Chaleur / しゃるーる</dd>
-						</div>
-						<div class="access__row">
-							<dt><Icon name="ph:map-pin" />住所</dt>
-							<dd>川口市並木1-9-11</dd>
-						</div>
-						<div class="access__row">
-							<dt><Icon name="ph:train" />アクセス</dt>
-							<dd>西川口駅 徒歩12分<br />川口駅 徒歩18分</dd>
-						</div>
-						<div class="access__row">
-							<dt><Icon name="ph:clock" />営業時間</dt>
-							<dd>平日 10:00-19:00<br />土曜・祝日 10:00-18:00</dd>
-						</div>
-						<div class="access__row">
-							<dt><Icon name="ph:calendar-blank" />定休日</dt>
-							<dd>水曜日・日曜日</dd>
-						</div>
-						<div class="access__row">
-							<dt><Icon name="ph:user" />席数</dt>
-							<dd>1名様限定 / 完全予約制</dd>
-						</div>
-						<div class="access__row">
-							<dt><Icon name="ph:phone" />電話</dt>
-							<dd><a href="tel:08066754133">080-6675-4133</a></dd>
-						</div>
-					</dl>
+		<section class="section gifts" id="gifts">
+			<div class="gifts__head" data-reveal>
+				<p class="eyebrow">Five gifts</p>
+				<h2 class="heading">公式LINEで届く、<br />美軸の無料5大特典。</h2>
+				<p class="lead">
+					名称だけでなく、何をするか、何に気づけるかまでまとめました。受け取ったあと、その日の調子に合わせて一つずつ試せます。
+				</p>
+			</div>
+			<div class="gifts__list">
+				{
+					gifts.map((gift) => (
+						<article class="gift" data-reveal>
+							<figure class="gift__photo">
+								<Image
+									src={gift.image}
+									alt={gift.alt}
+									widths={[480, 800, 1200]}
+									sizes="(max-width: 1080px) 92vw, 38vw"
+									quality={76}
+								/>
+								<figcaption>{gift.caption}</figcaption>
+							</figure>
+							<div class="gift__body">
+								<span class="gift__num">{gift.num}</span>
+								<h3>{gift.title}</h3>
+								<p class="gift__label">やること</p>
+								<p>{gift.doing}</p>
+								<p class="gift__label">気づけること</p>
+								<p>{gift.notice}</p>
+								{gift.note && <p class="gift__note">{gift.note}</p>}
+							</div>
+						</article>
+					))
+				}
+			</div>
+			<div class="gifts__cta" data-reveal>
+				<p>5つそろった状態で、公式LINEからお渡しします。</p>
+				<LineCta />
+			</div>
+		</section>
+
+		<section class="section home" id="home">
+			<div class="home__head" data-reveal>
+				<p class="eyebrow">At home</p>
+				<h2 class="heading">自宅では、<br />その日の自分に合わせて。</h2>
+				<p class="lead">
+					「1日10分」は、続けるときの目安です。動画ごとに長さは違い、椅子を使うもの、ペットボトルを添えるもの、立って歩くものがあります。
+				</p>
+			</div>
+			<ol class="home__list">
+				{
+					homeSteps.map((step) => (
+						<li class="home__item" data-reveal>
+							<span>{step.num}</span>
+							<h3>{step.title}</h3>
+							<p>{step.text}</p>
+						</li>
+					))
+				}
+			</ol>
+			<p class="home__aside" data-reveal>
+				服装は普段着のままで大丈夫です。ペットボトルは、ご自宅にあるもので足ります。特別な日を待たず、今の体調で選べます。
+			</p>
+		</section>
+
+		<section class="section concept" id="concept">
+			<div class="concept__grid">
+				<div class="concept__copy" data-reveal>
+					<p class="eyebrow">Chaleur</p>
+					<h2 class="heading">温かさを、<br />身体の軸から。</h2>
+					<p class="concept__quote">
+						しゃるーるは、フランス語で「温かさ」。<br />
+						身体を追い込む場所ではなく、<br />
+						自分の軸に気づき、日常へ持ち帰れる場所でありたい。
+					</p>
+					<div class="concept__body">
+						<p>
+							自分を大切にできるようになると、家族や大切な人にも、もっと優しくなれる。その笑顔が周りにも広がっていく。一人の温かさが、その人の大切な人へ、そしてその先へ。そう願って、この名前をつけました。
+						</p>
+						<p>
+							美軸とは、頭・背骨・骨盤が、無理のない位置でつながっている状態のこと。まずは知ることから。整え方は、今の身体に合わせます。
+						</p>
+					</div>
 				</div>
-				<div class="access__map" data-reveal>
-					<iframe
-						title="しゃるーるの地図"
-						src="https://maps.google.com/maps?q=%E5%B7%9D%E5%8F%A3%E5%B8%82%E4%B8%A6%E6%9C%A81-9-11&hl=ja&z=16&output=embed"
-						loading="lazy"
-						referrerpolicy="no-referrer-when-downgrade"
-					></iframe>
+				<figure class="concept__photo" data-reveal>
+					<Image
+						src={studio}
+						alt="木の床と鏡のある、しゃるーるのスタジオ"
+						widths={[640, 960, 1400]}
+						sizes="(max-width: 1080px) 92vw, 46vw"
+						quality={76}
+					/>
+				</figure>
+			</div>
+		</section>
+
+		<section class="section voice" id="voice">
+			<div class="voice__head" data-reveal>
+				<p class="eyebrow">Voice</p>
+				<h2 class="heading">体験された方の声。</h2>
+				<p class="voice__note">掲載している感想は、個人の体験です。身体の変化や痛みの改善を保証するものではありません。</p>
+			</div>
+			<div class="voice__layout">
+				<figure class="voice__photo" data-reveal>
+					<Image
+						src={sessionTalk}
+						alt="テーブルをはさんで姿勢の話をしている様子"
+						widths={[480, 800, 1200]}
+						sizes="(max-width: 1080px) 92vw, 40vw"
+						quality={76}
+					/>
+					<figcaption>体験の様子</figcaption>
+				</figure>
+				<div class="voice__quotes">
+					<blockquote class="voice__card" data-reveal>
+						<p>
+							マッサージに通っても、数日で戻る感じが気になっていました。重心や姿勢の癖を知るようになってから、自分で姿勢を思い出そうという気持ちになりました。
+						</p>
+						<footer>会社員の方の個人の感想</footer>
+					</blockquote>
+					<blockquote class="voice__card" data-reveal>
+						<p>
+							試着室で自分の後ろ姿を見たことが、姿勢を意識するきっかけでした。肩や骨盤の位置を知るうち、服を選ぶときの見方が変わり、着替える時間が楽しみになっています。
+						</p>
+						<footer>個人の感想</footer>
+					</blockquote>
 				</div>
 			</div>
 		</section>
 
-		<section class="cta" id="reserve">
-			<div class="cta__media" data-parallax>
-				<Image
-					src={freshWalk}
-					alt="明るい日差しのなかを歩く女性"
-					widths={[768, 1280, 1920]}
-					sizes="100vw"
-					quality={76}
-				/>
+		<section class="section profile" id="profile">
+			<div class="profile__grid">
+				<figure class="profile__photo" data-reveal>
+					<Image
+						src={profileScene}
+						alt="指導中の代表が、斜め前からゲストと向き合っている様子"
+						widths={[480, 800, 1200]}
+						sizes="(max-width: 1080px) 92vw, 42vw"
+						quality={76}
+					/>
+				</figure>
+				<div class="profile__copy" data-reveal>
+					<p class="eyebrow">Profile</p>
+					<h2 class="heading">私が、しゃるーるを<br />始めた理由。</h2>
+					<p class="profile__name">
+						<strong>Aya Nakagawa</strong>
+						<span>代表 / 姿勢改善専門家　トレーナー歴15年</span>
+					</p>
+					<div class="profile__body">
+						<p>
+							シングルマザーとして17年、子育てと仕事に追われる日々を歩んできました。30代までは頑張ればなんとかなると思い、身体を追い込んでいました。40代後半、強い疲労感や長引く不調、隠しきれない体型の崩れに直面したとき、「このまま追い込むだけでいいのだろうか」と立ち止まりました。
+						</p>
+						<p>
+							出会ったのは、無理に鍛えるのではなく、骨格や股関節の歪みを整え、正しく身体を使えるようにするコンディショニング。身体の使い方が変わると、心まで晴れやかになっていくのを、私自身が実感しました。
+						</p>
+						<p>
+							年齢で線を引かず、ご自身の身体と丁寧に向き合ってほしい。それが、しゃるーるで大切にしていることです。疲れた日は短く、余裕のある日は少し丁寧に。美軸を知るところから、一緒に始めていきましょう。
+						</p>
+					</div>
+				</div>
 			</div>
-			<div class="cta__inner" data-reveal>
-				<p class="eyebrow">Reserve</p>
-				<h2 class="heading">まずは、<br />お話しませんか。</h2>
-				<p>
-					ご予約・事前のご相談は、LINE公式またはInstagramから24時間受け付けています。あなたのこれからが、もっと軽やかで、もっと楽しいものになりますように。
-				</p>
-				<div class="cta__actions">
-					<a class="btn btn--line" href="https://lin.ee/WXtAYwP" target="_blank" rel="noopener noreferrer">
-						<Icon name="simple-icons:line" />
-						LINE公式
-					</a>
-					<a class="btn btn--ig" href="https://www.instagram.com/chaleur_bishisei" target="_blank" rel="noopener noreferrer">
-						<Icon name="simple-icons:instagram" />
-						Instagram
-					</a>
-					<a class="btn btn--ghost" href="tel:08066754133">
-						<Icon name="ph:phone" />
-						080-6675-4133
-					</a>
+		</section>
+
+		<section class="section receive" id="receive">
+			<div class="receive__inner" data-reveal>
+				<p class="eyebrow">How to receive</p>
+				<h2 class="heading">特典の受け取り方。</h2>
+				<p class="lead">ボタンの先は、すべて同じ公式LINEです。登録後、無料5大特典をトークで受け取れます。</p>
+				<ol class="receive__steps">
+					{
+						receiveSteps.map((step) => (
+							<li>
+								<span>{step.num}</span>
+								<div>
+									<h3>{step.title}</h3>
+									<p>{step.text}</p>
+								</div>
+							</li>
+						))
+					}
+				</ol>
+				<LineCta />
+				<div class="receive__hp">
+					<p>サロンのご案内は、ホームページをご覧ください。</p>
+					<a class="btn btn--ghost" href={hpUrl} target="_blank" rel="noopener noreferrer">ホームページを見る</a>
 				</div>
 			</div>
 		</section>

@@ -19,6 +19,7 @@ const lenis = new Lenis({
 
 const setMenu = (open: boolean) => {
 	drawer?.classList.toggle('is-open', open);
+	header?.classList.toggle('is-menu-open', open);
 	toggle?.setAttribute('aria-expanded', String(open));
 	if (open) {
 		lenis.stop();
@@ -47,14 +48,8 @@ document.querySelectorAll<HTMLAnchorElement>('a[href^="#"]').forEach((link) => {
 		if (!target) return;
 		event.preventDefault();
 		setMenu(false);
-		lockHeader = true;
-		header?.classList.remove('is-hidden');
 		lenis.scrollTo(target, {
 			offset: -72,
-			onComplete: () => {
-				lockHeader = false;
-				lastY = lenis.scroll;
-			},
 		});
 	});
 });
@@ -67,14 +62,9 @@ gsap.ticker.add((time) => {
 
 gsap.ticker.lagSmoothing(0);
 
-let lastY = 0;
-let lockHeader = false;
-
 lenis.on('scroll', ({ scroll }: { scroll: number }) => {
 	if (!header) return;
 	header.classList.toggle('is-scrolled', scroll > 24);
-	header.classList.toggle('is-hidden', !lockHeader && scroll > lastY && scroll > 140);
-	lastY = scroll;
 });
 
 const reveal = document.querySelectorAll<HTMLElement>('[data-reveal]');

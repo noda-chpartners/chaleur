@@ -1,0 +1,19 @@
+---
+import { Icon } from 'astro-icon/components';
+
+interface Props {
+	class?: string;
+}
+
+const { class: className } = Astro.props;
+---
+
+<a
+	class:list={['btn', 'btn--gift', className]}
+	href="https://lin.ee/WXtAYwP"
+	target="_blank"
+	rel="noopener noreferrer"
+>
+	<Icon name="simple-icons:line" />
+	<span>美軸の無料5大特典を<br />LINEで受け取る</span>
+</a>

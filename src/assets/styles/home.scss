@@ -1,227 +1,351 @@
 @use "variables" as *;
 @use "mixins" as *;
 
-.hero {
-	position: relative;
-	display: flex;
-	flex-direction: column;
-	min-height: 100svh;
-	padding: var(--header-h) 0 0;
-	overflow: hidden;
-
-	@include mq($bp-lg) {
-		height: 100svh;
-		max-height: 100svh;
-	}
-
-	&__grid {
-		@include container($wide);
-		display: grid;
-		flex: 1;
-		gap: 1.5rem;
-		align-items: stretch;
-		min-height: 0;
-		padding-block: 1.25rem;
-
-		@include mq($bp-lg) {
-			grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
-			gap: 3rem;
-			padding-block: 1.5rem 0.75rem;
-		}
-	}
-
-	&__copy {
-		align-self: center;
-		min-width: 0;
-		padding-bottom: 0;
-	}
-
-	&__place {
-		display: flex;
-		flex-wrap: wrap;
-		gap: 0.7rem 1.2rem;
-		margin-bottom: 1.6rem;
-		color: $ink-mute;
-		font-size: 0.72rem;
-		letter-spacing: 0.2em;
-	}
-
-	&__brand {
-		font-family: $font-serif;
-		font-size: clamp(2.8rem, 7vw, 5.8rem);
-		font-weight: 400;
-		line-height: 0.95;
-		letter-spacing: 0.06em;
-	}
-
-	&__kana {
-		display: block;
-		margin: 0.55rem 0 1.4rem;
-		color: $ink-mute;
-		font-size: 0.88rem;
-		letter-spacing: 0.28em;
-	}
-
-	&__title {
-		font-family: $font-mincho;
-		font-size: clamp(1.45rem, 3.2vw, 2.35rem);
-		font-weight: 500;
-		line-height: 1.7;
-		letter-spacing: 0.04em;
+main {
+	h1,
+	h2,
+	h3,
+	p,
+	li {
 		line-break: strict;
 		word-break: keep-all;
 	}
-
-	&__text {
-		max-width: 28rem;
-		margin: 1.4rem 0 2rem;
-		color: $ink-soft;
-		font-size: 0.95rem;
-		line-height: 2;
-	}
-
-	&__actions {
-		display: flex;
-		flex-wrap: wrap;
-		gap: 0.8rem;
-	}
-
-	&__visual {
-		position: relative;
-		display: grid;
-		grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
-		gap: 0.75rem;
-		width: 100%;
-		min-height: 240px;
-		height: min(42vh, 360px);
-		overflow: hidden;
-
-		@include mq($bp-lg) {
-			height: 100%;
-			min-height: 0;
-			max-height: 100%;
-		}
-	}
-
-	&__photo {
-		position: relative;
-		min-width: 0;
-		min-height: 0;
-		overflow: hidden;
-		border-radius: 2px;
-
-		img {
-			width: 100%;
-			height: 100%;
-			object-fit: cover;
-		}
-
-		&--main {
-			align-self: stretch;
-		}
-
-		&--sub {
-			align-self: end;
-			height: 68%;
-		}
-	}
-
-	&__caption {
-		position: absolute;
-		left: 0.9rem;
-		bottom: 0.9rem;
-		color: $white;
-		font-family: $font-serif;
-		font-size: 0.78rem;
-		font-style: italic;
-		letter-spacing: 0.16em;
-		text-shadow: 0 2px 12px rgba(44, 34, 28, 0.35);
-	}
-
-	&__bar {
-		display: flex;
-		flex-shrink: 0;
-		flex-wrap: wrap;
-		justify-content: space-between;
-		gap: 0.6rem 1.5rem;
-		margin-top: 0;
-		padding: 0.85rem 0 1.1rem;
-		border-top: 1px solid $line;
-		color: $ink-mute;
-		font-size: 0.72rem;
-		letter-spacing: 0.1em;
-
-		@include container($wide);
-
-		span {
-			display: inline-flex;
-			align-items: center;
-			gap: 0.45rem;
-
-			[data-icon] {
-				width: 0.95rem;
-				height: 0.95rem;
-				color: $terracotta;
-			}
-		}
-	}
 }
 
-.concept {
-	background: $paper-soft;
+.hero {
+	position: relative;
+	display: grid;
+	place-items: center;
+	min-height: 100svh;
+	overflow: hidden;
+	background:
+		radial-gradient(circle at 18% 82%, rgba(232, 176, 138, 0.55), transparent 26%),
+		radial-gradient(circle at 86% 38%, rgba(236, 196, 160, 0.5), transparent 18%),
+		linear-gradient(180deg, #f8e7dc 0%, #f6efe8 46%, #f3ddd2 100%);
 
-	&__grid {
-		@include container;
-		display: grid;
-		gap: 3rem;
+	&__bubble {
+		position: absolute;
+		border-radius: 50%;
+		pointer-events: none;
+		background: radial-gradient(circle at 35% 35%, rgba(255, 252, 248, 0.95), rgba(236, 186, 158, 0.28) 58%, rgba(236, 186, 158, 0) 72%);
 
-		@include mq($bp-lg) {
-			grid-template-columns: 0.9fr 1.1fr;
-			gap: 5rem;
-			align-items: center;
+		&--lg {
+			left: -18%;
+			bottom: -6%;
+			width: 68vw;
+			height: 68vw;
+			max-width: 26rem;
+			max-height: 26rem;
+		}
+
+		&--md {
+			right: 6%;
+			top: 34%;
+			width: 4.2rem;
+			height: 4.2rem;
+		}
+
+		&--sm {
+			right: 2%;
+			top: 18%;
+			width: 1.35rem;
+			height: 1.35rem;
 		}
 	}
 
-	&__images {
-		display: grid;
-		grid-template-columns: 1fr 0.78fr;
-		gap: 0.8rem;
-		align-items: start;
+	&__stage {
+		position: relative;
+		width: min(100%, 30rem);
+		height: 100svh;
+		min-height: 40rem;
 	}
 
-	&__image {
+	&__portrait {
+		position: absolute;
+		z-index: 1;
+		top: 12%;
+		left: 20%;
+		width: 50%;
+		height: 46%;
+		margin: 0;
 		overflow: hidden;
-		border-radius: 2px;
+		border-radius: 1.15rem;
+		box-shadow: 0 16px 36px rgba(140, 90, 64, 0.12);
 
+		picture,
 		img {
 			width: 100%;
 			height: 100%;
-			object-fit: cover;
 		}
 
-		&--tall {
-			height: min(62vw, 460px);
+		img {
+			object-fit: cover;
+			object-position: center 22%;
+		}
+	}
+
+	&__panel,
+	&__lines {
+		position: absolute;
+		z-index: 3;
+		display: flex;
+		flex-direction: row-reverse;
+		gap: 0.55rem;
+		margin: 0;
+		color: #7a4636;
+		font-family: $font-mincho;
+		font-weight: 500;
+		line-height: 1;
+		word-break: normal;
+
+		span {
+			display: block;
+			letter-spacing: 0.18em;
+			writing-mode: vertical-rl;
+			text-orientation: upright;
+		}
+	}
+
+	&__panel {
+		top: 14%;
+		right: 4%;
+		padding: 0.7rem 0.55rem;
+		background: rgba(255, 252, 249, 0.86);
+		font-size: 0.98rem;
+	}
+
+	&__lines {
+		top: 37%;
+		right: 4%;
+		color: #8a5342;
+		font-size: 0.72rem;
+
+		span {
+			letter-spacing: 0.1em;
+		}
+	}
+
+	&__thumb {
+		position: absolute;
+		z-index: 4;
+		margin: 0;
+		overflow: hidden;
+		border-radius: 0.35rem;
+		box-shadow: 0 10px 24px rgba(120, 72, 48, 0.12);
+
+		picture,
+		img {
+			width: 100%;
+			height: 100%;
+		}
+
+		img {
+			object-fit: cover;
 		}
 
 		&--wide {
-			margin-top: 18%;
-			height: min(42vw, 300px);
+			top: 57%;
+			left: 7%;
+			width: 48%;
+			height: 16.5%;
+		}
+
+		&--small {
+			top: 69%;
+			left: 34%;
+			width: 36%;
+			height: 15%;
+			object-position: center 40%;
 		}
 	}
 
-	&__quote {
-		margin: 1.6rem 0 1.4rem;
-		padding-left: 1.2rem;
-		border-left: 1px solid $gold;
-		font-family: $font-mincho;
-		font-size: clamp(1.05rem, 2vw, 1.25rem);
-		line-height: 2.05;
-		letter-spacing: 0.08em;
+	&__scroll {
+		position: absolute;
+		z-index: 4;
+		left: 50%;
+		bottom: 0.85rem;
+		margin: 0;
+		color: rgba(122, 78, 58, 0.55);
+		font-family: $font-serif;
+		font-size: 0.68rem;
+		letter-spacing: 0.28em;
+		writing-mode: horizontal-tb;
+		transform: translateX(-50%);
 	}
 
-	&__body {
+	&__fab {
+		position: absolute;
+		z-index: 5;
+		right: 5%;
+		bottom: 4.5%;
 		display: grid;
-		gap: 1.1rem;
+		place-items: center;
+		width: 6.7rem;
+		height: 6.7rem;
+		border-radius: 50%;
+		background: $terracotta;
+		color: $white;
+		font-size: 0.68rem;
+		font-weight: 500;
+		line-height: 1.35;
+		letter-spacing: 0.06em;
+		text-align: center;
+		box-shadow: 0 12px 26px rgba(163, 77, 36, 0.28);
+
+		span {
+			display: block;
+		}
+
+		&:hover {
+			background: $terracotta-deep;
+			transform: translateY(-2px);
+		}
+	}
+
+	@include mq($bp-md) {
+		&__bubble--md {
+			top: 10%;
+			right: 4%;
+			width: 3.4rem;
+			height: 3.4rem;
+		}
+
+		&__bubble--sm {
+			top: 7%;
+			right: 16%;
+		}
+
+		&__stage {
+			width: min(100% - 3rem, 88rem);
+			height: 100svh;
+			min-height: 38rem;
+		}
+
+		&__portrait {
+			top: 15%;
+			left: 5%;
+			width: 40%;
+			height: 50%;
+			border-radius: 1.35rem;
+		}
+
+		&__panel {
+			top: 16%;
+			left: auto;
+			right: 14%;
+			padding: 0.95rem 0.75rem;
+			font-size: 1.15rem;
+		}
+
+		&__lines {
+			top: 19%;
+			right: auto;
+			left: 64%;
+			font-size: 0.92rem;
+			gap: 0.5rem;
+		}
+
+		&__thumb--wide {
+			top: auto;
+			bottom: 11%;
+			left: 4%;
+			width: 34%;
+			height: 24%;
+		}
+
+		&__thumb--small {
+			top: auto;
+			bottom: 6%;
+			left: 20%;
+			width: 22%;
+			height: 21%;
+		}
+
+		&__fab {
+			top: auto;
+			right: 15%;
+			bottom: 6%;
+			left: auto;
+			width: 7.25rem;
+			height: 7.25rem;
+			font-size: 0.72rem;
+		}
+
+		&__scroll {
+			bottom: 1rem;
+		}
+	}
+
+	@include mq($bp-xl) {
+		&__bubble--lg {
+			left: -4%;
+			bottom: -20%;
+			width: 34rem;
+			height: 34rem;
+			max-width: none;
+			max-height: none;
+		}
+
+		&__bubble--md {
+			top: 14%;
+			right: 6%;
+			width: 7rem;
+			height: 7rem;
+		}
+
+		&__portrait {
+			top: 14%;
+			left: 4%;
+			width: 34%;
+			height: 58%;
+			border-radius: 1.5rem;
+		}
+
+		&__panel {
+			top: 18%;
+			left: auto;
+			right: 16%;
+			padding: 1.2rem 1rem;
+			font-size: clamp(1.55rem, 1.8vw, 2rem);
+		}
+
+		&__lines {
+			top: 22%;
+			left: 55%;
+			font-size: clamp(1.08rem, 1.25vw, 1.4rem);
+			gap: 0.7rem;
+
+			span {
+				letter-spacing: 0.14em;
+			}
+		}
+
+		&__thumb--wide {
+			bottom: 9%;
+			left: 3%;
+			width: 28%;
+			height: 26%;
+		}
+
+		&__thumb--small {
+			bottom: 5%;
+			left: 22%;
+			width: 18%;
+			height: 22%;
+		}
+
+		&__fab {
+			top: auto;
+			right: 20%;
+			width: 9.25rem;
+			height: 9.25rem;
+			font-size: 0.82rem;
+		}
+
+		&__scroll {
+			bottom: 1.15rem;
+			font-size: 0.75rem;
+		}
 	}
 }
 
@@ -229,622 +353,478 @@
 	&__head {
 		@include container;
 		max-width: 46rem;
-		margin-bottom: 2.8rem;
+		margin-bottom: 2.5rem;
+
+		.lead {
+			margin-top: 1.25rem;
+		}
 	}
 
 	&__list {
 		@include container;
 		display: grid;
-		gap: 1rem;
-
-		@include mq($bp-md) {
-			grid-template-columns: repeat(2, 1fr);
-			gap: 1.2rem;
-		}
+		gap: 0;
 	}
 
 	&__item {
-		padding: 1.6rem 1.5rem;
-		background: $white;
-		border: 1px solid $line;
-
-		h3 {
-			margin-bottom: 0.7rem;
-			font-family: $font-mincho;
-			font-size: 1.12rem;
-			letter-spacing: 0.1em;
-		}
-
-		p {
-			color: $ink-soft;
-			font-size: 0.9rem;
-			line-height: 1.9;
-		}
-	}
-
-	&__num {
-		display: block;
-		margin-bottom: 0.9rem;
-		color: $gold-deep;
-		font-family: $font-serif;
-		font-size: 0.85rem;
-		letter-spacing: 0.16em;
-	}
-}
-
-.method {
-	background: #fff6f3;
-
-	&__head {
-		@include container;
-		max-width: 44rem;
-		margin-bottom: 3rem;
-	}
-
-	&__cards {
-		@include container;
 		display: grid;
-		gap: 1.4rem;
+		gap: 0.8rem;
+		padding: 1.85rem 0;
+		border-top: 1px solid $line;
 
-		@include mq($bp-lg) {
-			grid-template-columns: 1fr 1fr;
+		&:last-child {
+			border-bottom: 1px solid $line;
 		}
-	}
-
-	&__card {
-		overflow: hidden;
-		background: $white;
-
-		figure {
-			aspect-ratio: 4 / 3;
-			overflow: hidden;
-
-			img {
-				width: 100%;
-				height: 100%;
-				object-fit: cover;
-			}
-		}
-
-		> div {
-			padding: 1.8rem 1.6rem 2rem;
-		}
-
-		h3 {
-			margin-bottom: 0.8rem;
-			font-family: $font-mincho;
-			font-size: 1.35rem;
-			letter-spacing: 0.1em;
-		}
-
-		p {
-			color: $ink-soft;
-			font-size: 0.92rem;
-			line-height: 2;
-		}
-	}
-
-	&__label {
-		display: inline-block;
-		margin-bottom: 0.55rem;
-		color: $terracotta;
-		font-family: $font-serif;
-		font-size: 0.82rem;
-		font-style: italic;
-		letter-spacing: 0.16em;
-	}
-
-	&__note {
-		@include container;
-		margin-top: 2.2rem;
-		padding: 1.6rem 1.5rem;
-		background: $paper-soft;
-		border: 1px solid $line;
 
 		@include mq($bp-md) {
-			padding: 1.8rem 2rem;
+			grid-template-columns: 4.5rem 1fr;
+			gap: 1.5rem;
+			align-items: start;
+			padding: 2.2rem 0;
 		}
 
-		p {
-			color: $ink-soft;
-			font-size: 0.92rem;
-			line-height: 2;
-		}
-
-		strong {
-			color: $ink;
+		h3 {
+			margin-bottom: 0.55rem;
+			font-family: $font-mincho;
+			font-size: clamp(1.25rem, 2.4vw, 1.5rem);
 			font-weight: 500;
-		}
-	}
-}
-
-.story {
-	overflow: hidden;
-
-	&__grid {
-		@include container($wide);
-		display: grid;
-		gap: 2.5rem;
-
-		@include mq($bp-lg) {
-			grid-template-columns: 1fr 1fr;
-			gap: 4.5rem;
-			align-items: center;
-		}
-	}
-
-	&__visual {
-		position: relative;
-		min-height: 28rem;
-
-		img {
-			width: 100%;
-			height: 100%;
-			object-fit: cover;
-		}
-	}
-
-	&__frame {
-		overflow: hidden;
-		height: min(78vw, 620px);
-	}
-
-	&__float {
-		position: absolute;
-		right: -6%;
-		bottom: -8%;
-		width: 46%;
-		overflow: hidden;
-		border: 8px solid $paper;
-
-		img {
-			aspect-ratio: 3 / 4;
-			object-fit: cover;
-		}
-
-		@include mq($bp-md) {
-			right: -4%;
-			bottom: 6%;
-			width: 38%;
-		}
-	}
-
-	&__profile {
-		margin: 1.4rem 0 1.6rem;
-		color: $ink-mute;
-		font-size: 0.82rem;
-		letter-spacing: 0.12em;
-
-		strong {
-			display: block;
-			margin-bottom: 0.25rem;
-			color: $ink;
-			font-family: $font-serif;
-			font-size: 1.35rem;
-			font-weight: 500;
-			letter-spacing: 0.12em;
-		}
-	}
-
-	&__body p + p {
-		margin-top: 1rem;
-	}
-
-	&__body p {
-		color: $ink-soft;
-		font-size: 0.93rem;
-		line-height: 2.05;
-	}
-}
-
-.menu {
-	background: $paper;
-	color: $ink;
-
-	.eyebrow {
-		color: $terracotta;
-
-		&::before {
-			background: $gold;
-		}
-	}
-
-	.heading {
-		color: $ink;
-	}
-
-	.lead {
-		color: $ink-soft;
-	}
-
-	&__head {
-		@include container;
-		max-width: 42rem;
-		margin-bottom: 2.8rem;
-	}
-
-	&__list {
-		@include container;
-		display: grid;
-		gap: 1.2rem;
-
-		@include mq($bp-lg) {
-			grid-template-columns: 1fr 1fr;
-		}
-	}
-
-	&__card {
-		display: grid;
-		overflow: hidden;
-		background: $white;
-		border: 1px solid $line;
-		box-shadow: 0 12px 32px rgba(63, 58, 55, 0.05);
-
-		figure {
-			aspect-ratio: 16 / 10;
-			overflow: hidden;
-
-			img {
-				width: 100%;
-				height: 100%;
-				object-fit: cover;
-			}
-		}
-
-		> div {
-			padding: 1.8rem 1.5rem 2rem;
-		}
-	}
-
-	&__plan {
-		margin-bottom: 0.55rem;
-		color: $terracotta;
-		font-family: $font-serif;
-		font-size: 0.8rem;
-		letter-spacing: 0.18em;
-		text-transform: uppercase;
-	}
-
-	&__name {
-		margin-bottom: 1rem;
-		font-family: $font-mincho;
-		font-size: 1.25rem;
-		color: $ink;
-		letter-spacing: 0.04em;
-		line-break: strict;
-		word-break: keep-all;
-		line-height: 1.7;
-	}
-
-	&__price {
-		display: flex;
-		align-items: baseline;
-		gap: 0.4rem;
-		margin-bottom: 1.1rem;
-		color: $ink;
-		font-family: $font-sans;
-	}
-
-	&__price-num {
-		font-size: clamp(2.4rem, 4vw, 3.2rem);
-		font-weight: 500;
-		font-style: normal;
-		font-variant-numeric: tabular-nums lining-nums;
-		letter-spacing: 0.04em;
-		line-height: 1;
-		-webkit-font-smoothing: antialiased;
-		-moz-osx-font-smoothing: grayscale;
-	}
-
-	&__price-unit {
-		font-size: 0.9rem;
-		color: $ink-mute;
-		letter-spacing: 0.12em;
-	}
-
-	&__desc {
-		color: $ink-soft;
-		font-size: 0.9rem;
-		line-height: 1.95;
-	}
-
-	&__tags {
-		display: flex;
-		flex-wrap: wrap;
-		gap: 0.5rem;
-		margin-top: 1.3rem;
-
-		li {
-			padding: 0.3rem 0.7rem;
-			border: 1px solid $line-strong;
-			color: $ink-soft;
-			font-size: 0.72rem;
-			letter-spacing: 0.1em;
-		}
-	}
-
-	&__note {
-		@include container;
-		margin-top: 1.6rem;
-		color: $ink-mute;
-		font-size: 0.8rem;
-	}
-}
-
-.voice {
-	&__head {
-		@include container;
-		max-width: 40rem;
-		margin-bottom: 2.6rem;
-	}
-
-	&__list {
-		@include container;
-		display: grid;
-		gap: 1.2rem;
-
-		@include mq($bp-md) {
-			grid-template-columns: 1fr 1fr;
-		}
-	}
-
-	&__card {
-		padding: 1.8rem 1.5rem;
-		background: $white;
-		border-top: 2px solid $gold;
-
-		h3 {
-			margin-bottom: 1rem;
-			font-family: $font-mincho;
-			font-size: 1.05rem;
-			line-height: 1.75;
+			line-height: 1.6;
 			letter-spacing: 0.06em;
 		}
 
 		p {
 			color: $ink-soft;
-			font-size: 0.9rem;
+			font-size: 1.0625rem;
 			line-height: 2;
 		}
+	}
 
-		footer {
-			margin-top: 1.3rem;
-			color: $ink-mute;
-			font-size: 0.78rem;
-			letter-spacing: 0.08em;
-		}
+	&__num {
+		color: $gold-deep;
+		font-family: $font-serif;
+		font-size: 1.7rem;
+		letter-spacing: 0.08em;
+		line-height: 1;
 	}
 }
 
-.gallery {
-	padding-top: 0;
-
-	&__track {
-		@include container($wide);
-		display: grid;
-		grid-template-columns: 1fr 1fr;
-		gap: 0.8rem;
-
-		@include mq($bp-lg) {
-			grid-template-columns: 1.1fr 1.3fr 1.1fr 1.3fr;
-		}
-	}
-
-	&__item {
-		overflow: hidden;
-		aspect-ratio: 4 / 5;
-
-		img {
-			width: 100%;
-			height: 100%;
-			object-fit: cover;
-		}
-
-		&--wide {
-			aspect-ratio: 4 / 5;
-		}
-	}
-}
-
-.flow {
-	background: $paper-soft;
+.gifts {
+	background: linear-gradient(180deg, rgba(243, 235, 225, 0.55), rgba(251, 247, 241, 0) 12rem);
 
 	&__head {
 		@include container;
-		max-width: 40rem;
-		margin-bottom: 2.6rem;
+		max-width: 46rem;
+		margin-bottom: 3.5rem;
+
+		.lead {
+			margin-top: 1.25rem;
+		}
+	}
+
+	&__list {
+		@include container($wide);
+		display: grid;
+		gap: 4.5rem;
+
+		@include mq($bp-md) {
+			gap: 6.5rem;
+		}
+	}
+
+	&__cta {
+		@include container;
+		display: grid;
+		justify-items: center;
+		gap: 1.1rem;
+		margin-top: 4rem;
+		text-align: center;
+
+		p {
+			color: $ink-soft;
+			font-size: 1.0625rem;
+			line-height: 1.9;
+		}
+	}
+}
+
+.gift {
+	display: grid;
+	gap: 1.35rem;
+
+	@include mq($bp-md) {
+		grid-template-columns: minmax(0, 0.86fr) minmax(0, 1.14fr);
+		gap: 3.5rem;
+		align-items: center;
+	}
+
+	&:nth-child(even) {
+		@include mq($bp-md) {
+			.gift__photo {
+				order: 2;
+			}
+		}
+	}
+
+	&__photo {
+		margin: 0;
+
+		img {
+			width: 100%;
+			height: auto;
+			border-radius: 1.25rem;
+		}
+
+		figcaption {
+			margin-top: 0.7rem;
+			color: $gold-deep;
+			font-size: 0.95rem;
+			letter-spacing: 0.08em;
+		}
+	}
+
+	&__num {
+		display: block;
+		margin-bottom: 0.7rem;
+		color: $gold-deep;
+		font-family: $font-serif;
+		font-size: 1.8rem;
+		letter-spacing: 0.08em;
+		line-height: 1;
+	}
+
+	h3 {
+		margin-bottom: 1.35rem;
+		font-family: $font-mincho;
+		font-size: clamp(1.35rem, 2.6vw, 1.7rem);
+		font-weight: 500;
+		line-height: 1.65;
+		letter-spacing: 0.05em;
+	}
+
+	&__label {
+		margin: 1.15rem 0 0.35rem;
+		color: $terracotta;
+		font-size: 0.92rem;
+		font-weight: 500;
+		letter-spacing: 0.14em;
+	}
+
+	p {
+		color: $ink-soft;
+		font-size: 1.0625rem;
+		line-height: 2;
+	}
+
+	&__note {
+		margin-top: 1rem;
+		padding-top: 0.9rem;
+		border-top: 1px solid $line;
+		color: $ink-mute;
+		font-size: 0.98rem;
+		line-height: 1.9;
+	}
+}
+
+.home {
+	&__head {
+		@include container;
+		max-width: 46rem;
+
+		.lead {
+			margin-top: 1.25rem;
+		}
 	}
 
 	&__list {
 		@include container;
 		display: grid;
-		gap: 1rem;
+		gap: 1.5rem;
+		margin-top: 2.75rem;
 
 		@include mq($bp-md) {
-			grid-template-columns: repeat(2, 1fr);
-		}
-
-		@include mq($bp-lg) {
-			grid-template-columns: repeat(4, 1fr);
+			grid-template-columns: repeat(3, 1fr);
+			gap: 2rem;
 		}
 	}
 
 	&__item {
-		padding: 1.6rem 1.3rem 1.7rem;
-		background: $white;
-		border: 1px solid $line;
+		padding: 1.6rem 1.4rem 1.7rem;
+		background: $paper-soft;
+		border-radius: 1.15rem;
+		box-shadow: 0 10px 30px rgba(58, 42, 34, 0.04);
+
+		span {
+			display: block;
+			margin-bottom: 0.8rem;
+			color: $gold-deep;
+			font-family: $font-serif;
+			font-size: 1.45rem;
+		}
 
 		h3 {
-			margin: 0.7rem 0 0.6rem;
+			margin-bottom: 0.7rem;
 			font-family: $font-mincho;
-			font-size: 1.05rem;
-			letter-spacing: 0.1em;
+			font-size: 1.3rem;
+			font-weight: 500;
+			letter-spacing: 0.06em;
 		}
 
 		p {
 			color: $ink-soft;
-			font-size: 0.86rem;
-			line-height: 1.9;
+			font-size: 1.02rem;
+			line-height: 1.95;
 		}
 	}
 
-	&__step {
-		color: $gold-deep;
-		font-family: $font-serif;
-		font-size: 0.82rem;
-		letter-spacing: 0.16em;
+	&__aside {
+		@include container;
+		max-width: 46rem;
+		margin-top: 1.75rem;
+		color: $ink-soft;
+		font-size: 1.0625rem;
+		line-height: 2.05;
 	}
 }
 
-.access {
+.concept {
 	&__grid {
-		@include container;
+		@include container($wide);
 		display: grid;
 		gap: 2rem;
+		align-items: center;
 
 		@include mq($bp-lg) {
-			grid-template-columns: 0.9fr 1.1fr;
-			gap: 3.5rem;
+			grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+			gap: 4rem;
+		}
+	}
+
+	&__quote {
+		margin: 1.4rem 0 1.5rem;
+		font-family: $font-mincho;
+		font-size: clamp(1.15rem, 2.2vw, 1.35rem);
+		line-height: 2;
+		letter-spacing: 0.05em;
+	}
+
+	&__body {
+		display: grid;
+		gap: 1.15rem;
+
+		p {
+			color: $ink-soft;
+			font-size: 1.0625rem;
+			line-height: 2.1;
+		}
+	}
+
+	&__photo {
+		margin: 0;
+
+		img {
+			width: 100%;
+			height: auto;
+			border-radius: 1.35rem;
+		}
+	}
+}
+
+.voice {
+	background: $paper-deep;
+
+	&__head {
+		@include container;
+		max-width: 46rem;
+		margin-bottom: 2.5rem;
+	}
+
+	&__note {
+		margin-top: 1.1rem;
+		color: $ink-soft;
+		font-size: 1rem;
+		line-height: 1.9;
+	}
+
+	&__layout {
+		@include container($wide);
+		display: grid;
+		gap: 1.75rem;
+
+		@include mq($bp-md) {
+			grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.18fr);
+			gap: 3rem;
 			align-items: start;
 		}
 	}
 
-	&__list {
-		display: grid;
-		gap: 1.15rem;
-		margin-top: 1.8rem;
-	}
-
-	&__row {
-		display: grid;
-		grid-template-columns: 7.5rem 1fr;
-		gap: 0.8rem;
-		padding-bottom: 1.1rem;
-		border-bottom: 1px solid $line;
-		font-size: 0.92rem;
-
-		dt {
-			display: flex;
-			align-items: center;
-			gap: 0.4rem;
-			color: $ink-mute;
-			letter-spacing: 0.1em;
-
-			[data-icon] {
-				width: 1rem;
-				height: 1rem;
-				color: $terracotta;
-			}
-		}
-
-		dd {
-			line-height: 1.85;
-		}
-	}
-
-	&__map {
-		overflow: hidden;
-		min-height: 22rem;
-		background: $paper-deep;
-		border: 1px solid $line;
-
-		iframe {
-			width: 100%;
-			height: 100%;
-			min-height: 28rem;
-			border: 0;
-			filter: grayscale(0.08) contrast(1.02) saturate(0.92);
-		}
-	}
-}
-
-.cta {
-	position: relative;
-	overflow: hidden;
-	color: $ink;
-
-	&__media {
-		position: absolute;
-		inset: 0;
+	&__photo {
+		margin: 0;
 
 		img {
 			width: 100%;
-			height: 100%;
-			object-fit: cover;
+			height: auto;
+			border-radius: 1.25rem;
 		}
 
-		&::after {
-			content: "";
-			position: absolute;
-			inset: 0;
-			background: linear-gradient(180deg, rgba(255, 250, 248, 0.78), rgba(255, 250, 248, 0.9));
-		}
-	}
-
-	&__inner {
-		position: relative;
-		@include container;
-		max-width: 44rem;
-		padding: 6rem 0;
-		text-align: center;
-
-		@include mq($bp-md) {
-			padding: 8rem 0;
+		figcaption {
+			margin-top: 0.7rem;
+			color: $gold-deep;
+			letter-spacing: 0.1em;
 		}
 	}
 
-	.eyebrow {
-		justify-content: center;
-		color: $terracotta;
+	&__quotes {
+		display: grid;
+		gap: 1.25rem;
+	}
 
-		&::before {
-			display: none;
+	&__card {
+		padding: 1.6rem 1.4rem 1.45rem;
+		background: $paper-soft;
+		border-radius: 1.15rem;
+
+		p {
+			font-family: $font-mincho;
+			font-size: 1.15rem;
+			line-height: 2;
+			letter-spacing: 0.04em;
 		}
-	}
 
-	.heading {
-		color: $ink;
-	}
-
-	p {
-		margin: 1.2rem 0 2rem;
-		color: $ink-soft;
-		line-height: 2;
-	}
-
-	&__actions {
-		display: flex;
-		flex-wrap: wrap;
-		justify-content: center;
-		gap: 0.8rem;
-	}
-
-	.btn--ghost {
-		border-color: $line-strong;
-		color: $ink;
-
-		&:hover {
-			background: $white;
+		footer {
+			margin-top: 1rem;
+			color: $ink-mute;
+			font-size: 0.95rem;
+			letter-spacing: 0.06em;
 		}
 	}
 }
 
-@media (max-width: 767px) {
-	.hero {
-		height: auto;
-		max-height: none;
+.profile {
+	&__grid {
+		@include container($wide);
+		display: grid;
+		gap: 1.75rem;
+		align-items: center;
+
+		@include mq($bp-lg) {
+			grid-template-columns: minmax(0, 0.86fr) minmax(0, 1.14fr);
+			gap: 4rem;
+		}
 	}
 
-	.hero__visual {
-		height: min(46vh, 340px);
-		min-height: 220px;
+	&__photo {
+		margin: 0;
+
+		img {
+			width: 100%;
+			height: auto;
+			border-radius: 1.35rem;
+		}
 	}
 
-	.story__visual {
-		min-height: auto;
+	&__name {
+		display: grid;
+		gap: 0.35rem;
+		margin: 1.35rem 0 1.4rem;
+
+		strong {
+			font-family: $font-serif;
+			font-size: 1.7rem;
+			font-weight: 500;
+			letter-spacing: 0.08em;
+		}
+
+		span {
+			color: $ink-soft;
+			font-size: 1rem;
+			letter-spacing: 0.06em;
+		}
 	}
 
-	.story__float {
-		display: none;
+	&__body {
+		display: grid;
+		gap: 1.15rem;
+
+		p {
+			color: $ink-soft;
+			font-size: 1.0625rem;
+			line-height: 2.1;
+		}
+	}
+}
+
+.receive {
+	background:
+		radial-gradient(circle at 12% 18%, rgba(176, 138, 69, 0.2), transparent 26rem),
+		radial-gradient(circle at 90% 80%, rgba(227, 154, 104, 0.28), transparent 24rem),
+		$paper-deep;
+
+	&__inner {
+		@include container;
+		display: grid;
+		justify-items: start;
+		gap: 0;
+		max-width: 46rem;
+
+		.lead {
+			margin-top: 1.15rem;
+		}
+
+		.btn--gift {
+			justify-self: center;
+			margin-top: 2rem;
+		}
+	}
+
+	&__steps {
+		display: grid;
+		gap: 1.35rem;
+		width: 100%;
+		margin-top: 2.25rem;
+
+		li {
+			display: grid;
+			grid-template-columns: auto 1fr;
+			gap: 1rem;
+			align-items: start;
+		}
+
+		span {
+			color: $gold-deep;
+			font-family: $font-serif;
+			font-size: 1.45rem;
+			line-height: 1.2;
+		}
+
+		h3 {
+			margin-bottom: 0.35rem;
+			font-family: $font-mincho;
+			font-size: 1.25rem;
+			font-weight: 500;
+			letter-spacing: 0.06em;
+		}
+
+		p {
+			color: $ink-soft;
+			font-size: 1.02rem;
+			line-height: 1.9;
+		}
+	}
+
+	&__hp {
+		display: grid;
+		justify-items: center;
+		gap: 0.9rem;
+		width: 100%;
+		margin-top: 2.75rem;
+		padding-top: 2rem;
+		border-top: 1px solid $line;
+		text-align: center;
+
+		p {
+			color: $ink-soft;
+			font-size: 1rem;
+			line-height: 1.8;
+		}
 	}
 }
