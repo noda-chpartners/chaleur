@@ -8,7 +8,10 @@ main {
 	p,
 	li {
 		line-break: strict;
-		word-break: keep-all;
+
+		@include mq($bp-xl) {
+			word-break: keep-all;
+		}
 	}
 }
 

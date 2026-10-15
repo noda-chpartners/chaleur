@@ -84,7 +84,10 @@ html.lenis body {
 	line-height: 1.6;
 	letter-spacing: 0.06em;
 	line-break: strict;
-	word-break: keep-all;
+
+	@include mq($bp-xl) {
+		word-break: keep-all;
+	}
 }
 
 .lead {
@@ -92,7 +95,10 @@ html.lenis body {
 	font-size: 1.0625rem;
 	line-height: 2.1;
 	line-break: strict;
-	word-break: keep-all;
+
+	@include mq($bp-xl) {
+		word-break: keep-all;
+	}
 }
 
 .btn {
