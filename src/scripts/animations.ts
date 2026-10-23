@@ -15,8 +15,6 @@ const lenis = new Lenis({
 	duration: 1.15,
 });
 
-(window as Window & { __lenis?: Lenis }).__lenis = lenis;
-
 const setMenu = (open: boolean) => {
 	drawer?.classList.toggle('is-open', open);
 	header?.classList.toggle('is-menu-open', open);
@@ -80,27 +78,4 @@ reveal.forEach((el) => {
 			start: 'top 86%',
 		},
 	});
-});
-
-const parallax = document.querySelectorAll<HTMLElement>('[data-parallax]');
-
-parallax.forEach((el) => {
-	const media = el.querySelector('img');
-	if (!media) return;
-
-	gsap.fromTo(
-		media,
-		{ yPercent: -4, scale: 1.04 },
-		{
-			yPercent: 4,
-			scale: 1.04,
-			ease: 'none',
-			scrollTrigger: {
-				trigger: el,
-				start: 'top bottom',
-				end: 'bottom top',
-				scrub: true,
-			},
-		},
-	);
 });

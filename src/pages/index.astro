@@ -1,23 +1,22 @@
 ---
 import { Image } from 'astro:assets';
+import { Icon } from 'astro-icon/components';
 import Layout from '../layouts/Layout.astro';
 import LineCta from '../components/LineCta.astro';
 import '../assets/styles/home.scss';
 
-import checkBack from '../assets/images/line_oa_chat_261006_120835.jpg';
-import chairSpine from '../assets/images/line_oa_chat_261006_120807.jpg';
-import pelvisGuide from '../assets/images/1789434548.png';
-import standingLine from '../assets/images/line_oa_chat_261006_120810.jpg';
-import shoulderBack from '../assets/images/line_oa_chat_261006_120830.jpg';
+import chair from '../assets/images/chair.jpg';
+import chairExercise from '../assets/images/chairtaisou.jpg';
+import giftGuide from '../assets/images/tokuten.jpg';
 import studio from '../assets/images/line_oa_chat_261006_120823.jpg';
 import sessionTalk from '../assets/images/line_oa_chat_261006_120819.jpg';
 import profileScene from '../assets/images/line_oa_chat_261006_120839.jpg';
 
 const hpUrl = 'https://sites.google.com/view/chaleur-shisei/%E3%83%9B%E3%83%BC%E3%83%A0';
 
-const pageTitle = '川口の姿勢サロン しゃるーる｜疲れた日でも、1日10分から';
+const pageTitle = '川口の姿勢サロン しゃるーる｜きれいな姿勢、1日5分のセルフケアから';
 const pageDescription =
-	'川口市並木の姿勢サロン「しゃるーる」（Chaleur）。疲れた日でも、1日10分から。姿勢・背中・ヒップの美軸を知る無料5大特典を、公式LINEで受け取れます。';
+	'川口市並木の姿勢サロン「しゃるーる」（Chaleur）。きれいな姿勢、私にもできることから。1日5分、セルフケア。座ってできるセルフケアと姿勢骨格診断の無料3大特典を、公式LINEで受け取れます。';
 
 const jsonLd = {
 	'@context': 'https://schema.org',
@@ -58,94 +57,83 @@ const jsonLd = {
 const concerns = [
 	{
 		num: '01',
-		title: 'マッサージをしても、すぐ戻る',
-		text: 'ほぐしたあとに、また肩や腰が重くなる。背骨と骨盤、足の重心がずれたまま過ごしているのかもしれません。',
+		title: '楽になったと思っても、またつらくなる',
+		text: 'マッサージのあとは楽なのに、数日たつと肩や腰が重くなる、ずっとこの繰り返し',
 	},
 	{
 		num: '02',
-		title: '後ろ姿に、自信が持てない',
-		text: '背中の丸み、首元、腰まわり。自分では見えない場所にこそ、疲れは出やすいものです。',
+		title: '写真に映った姿勢に、がっかりする',
+		text: '「私、こんなに背中が丸かった？」\n背すじを伸ばしてみても、気づくといつもの姿勢に戻っている。',
 	},
 	{
 		num: '03',
-		title: '肩や腰の重さが、いつもの景色',
-		text: 'その重さを、いったん預ける場所がほしい。まずは自分の姿勢の癖に気づくことから始められます。',
+		title: 'やりたいことはあるのに、身体が疲れてしまう',
+		text: '仕事や家事を終えると、もうぐったり。\nお出かけや好きなことを楽しむ元気まで、残っていない。',
 	},
 	{
 		num: '04',
-		title: '頑張っても、身体がついてこない',
-		text: '激しく追い込む必要はありません。歪みに気づき、日常で使える感覚を思い出していくことが、しゃるーるの考え方です。',
+		title: '変わりたい。でも、何から始めたらいいかわからない',
+		text: 'ストレッチも運動も、いろいろ試してきた。今度こそ、私に合う方法を見つけたい。',
+	},
+	{
+		num: '05',
+		title: '「年齢のせい」と、諦めかけている',
+		text: '前より疲れやすい。\n姿勢も体型も変わってきた。\n「仕方ない」と思いながらも、本当はまだ、きれいで元気に過ごしたい。',
 	},
 ];
 
 const gifts = [
 	{
 		num: '01',
-		title: '3分でわかる！美軸姿勢セルフチェック',
-		doing: '横と後ろから、頭・肩・骨盤・足の位置を見ていきます。目安は3分です。',
-		notice: '体重がどちらの足に乗っているか、肩が内側に入っていないか。自分の美軸の現在地がわかります。',
-		note: 'からだの状態を知るためのチェックです。診断ではありません。',
-		image: checkBack,
-		alt: '後ろから肩と腰の位置を確かめる立ち姿',
-		caption: '後ろから、自分のラインを見る',
+		title: '椅子でできる腸腰筋背骨エクササイズ',
+		text: '',
+		effects: [
+			'固まって動かなくなった腸腰筋を目覚めさせる',
+			'背骨をしなやかに動かせるようにする',
+			'体幹の筋膜リリース',
+		],
+		after: 'この3つの効果があります。',
 	},
 	{
 		num: '02',
-		title: 'イスでできる「腸腰筋＆背骨」エクササイズ',
-		doing: '椅子に座ったまま、股関節の前側（腸腰筋）と背骨を、ゆっくり動かします。',
-		notice: '座りっぱなしで固まりやすい脚の付け根と、丸まりやすい背中が、どのようにつながっているかに気づきます。',
-		note: 'この回は、椅子に座って行います。',
-		image: chairSpine,
-		alt: '椅子に座って背骨を伸ばしている様子',
-		caption: '椅子に座って、背骨を動かす',
+		title: '椅子、ペットボトルでできる内転筋エクササイズ',
+		text: '内転筋は太ももの内側にある筋肉です。',
+		effects: [
+			'O脚Ｘ脚が改善される',
+			'内もとが引き締まる',
+			'骨盤底筋も同時に働くため、尿漏れ予防になる',
+		],
+		after: '',
 	},
 	{
 		num: '03',
-		title: 'イス＋ペットボトルでできる「骨盤底筋」エクササイズ',
-		doing: '椅子に座り、ご自宅のペットボトルを支えにしながら、骨盤底筋へ意識を向けて小さく動かします。',
-		notice: '息を吐いたときの骨盤の位置と、下腹部の力の入れ具合がわかります。',
-		note: '強い負荷は使いません。写真は骨盤の位置に意識を向けている様子です。特典そのものは、椅子とペットボトルで行います。',
-		image: pelvisGuide,
-		alt: '骨盤の位置に手を添え、姿勢を見ている様子',
-		caption: '骨盤の位置に、意識を向ける',
-	},
-	{
-		num: '04',
-		title: '重心から変える「立ち方・歩き方」',
-		doing: '足裏のどこに体重があるかを手がかりに、立ち方と歩き方を見直します。',
-		notice: '骨盤の位置と、足の着き方。日常の一歩で思い出せるポイントが見つかります。',
-		note: '',
-		image: standingLine,
-		alt: '横から見た、頭・肩・骨盤・足がつながる立ち姿',
-		caption: '横から、立ち方の軸を見る',
-	},
-	{
-		num: '05',
-		title: '肩まわりスッキリストレッチ',
-		doing: '肩甲骨のまわりを、気持ちのよい範囲でゆっくり伸ばします。',
-		notice: '肩が前に入っている感覚と、肩の位置が戻ったときの背中の広がりがわかります。',
-		note: '',
-		image: shoulderBack,
-		alt: '後ろから見た、肩甲骨まわりの立ち姿',
-		caption: '肩甲骨のまわりを、ゆっくり伸ばす',
+		title: '姿勢骨格診断',
+		text: 'LINEで写真を送っていただき、姿勢分析を行い、改善のためのアドバイスをお伝えいたします。',
+		effects: [],
+		after: '',
 	},
 ];
 
 const homeSteps = [
 	{
 		num: '01',
-		title: '気づく',
-		text: 'まずはセルフチェック。頭、肩、骨盤、足が、今どこにあるかを知ります。',
+		title: 'がんばりすぎない',
+		text: 'がんばりすぎて、力が入ってしまうと、腸腰筋に刺激が届きません。\nできるだけ脱力して行います',
 	},
 	{
 		num: '02',
-		title: 'その日のひとつを選ぶ',
-		text: '椅子で背骨を動かす日、ペットボトルを添えて骨盤底筋を感じる日、立ち方を思い出す日。全部を一度にやらなくて大丈夫です。',
+		title: '呼吸を止めない',
+		text: '呼吸が止まると、筋肉が固まり効果が半減してしまいます。',
 	},
 	{
 		num: '03',
-		title: '10分を目安に続ける',
-		text: '「1日10分」は、習慣の目安です。疲れた日はもっと短く、余裕のある日は少し丁寧に。動画の長さは内容ごとに違います。',
+		title: '完璧を目指さない',
+		text: 'できない日があってもいい。\nただ、できる日に必ずやろう',
+	},
+	{
+		num: '04',
+		title: '3週間続ける',
+		text: '最初の3週間はほとんど変化を感じないかもしれません。\n3週間を超えたあたりから、ふと変化に気づきます。そこからが本当の始まり。\n3週間、信じて続けてください',
 	},
 ];
 
@@ -162,8 +150,8 @@ const receiveSteps = [
 	},
 	{
 		num: '03',
-		title: '無料5大特典を受け取る',
-		text: 'セルフチェック、腸腰筋と背骨、骨盤底筋、立ち方・歩き方、肩まわり。ページと同じ名称でお届けします。',
+		title: '無料3大特典を受け取る',
+		text: '椅子でできる腸腰筋背骨エクササイズ、椅子とペットボトルでできる内転筋エクササイズ、姿勢骨格診断をご案内します。',
 	},
 ];
 ---
@@ -177,45 +165,30 @@ const receiveSteps = [
 			<div class="hero__stage">
 				<figure class="hero__portrait">
 					<Image
-						src={checkBack}
-						alt="後ろから見た、肩と背中のライン"
+						src={chair}
+						alt="セルフケアに使う椅子とペットボトル"
 						widths={[480, 768, 1200]}
-						sizes="(max-width: 1279px) 62vw, 34vw"
+						sizes="(max-width: 767px) 90vw, 42vw"
 						quality={80}
 						loading="eager"
 						fetchpriority="high"
 					/>
 				</figure>
-				<h1 class="hero__panel">
-					<span>疲れた日でも</span>
-					<span>１日１０分から</span>
-				</h1>
-				<p class="hero__lines">
-					<span>姿勢をシュッと</span>
-					<span>背中をシュッと</span>
-					<span>ヒップをキュッと</span>
-				</p>
-				<figure class="hero__thumb hero__thumb--wide">
-					<Image
-						src={studio}
-						alt="木の床と鏡のあるスタジオ"
-						widths={[360, 640]}
-						sizes="(max-width: 1279px) 46vw, 28vw"
-						quality={74}
-					/>
-				</figure>
-				<figure class="hero__thumb hero__thumb--small">
-					<Image
-						src={chairSpine}
-						alt="椅子に座って背骨を動かしている様子"
-						widths={[320, 560]}
-						sizes="(max-width: 1279px) 36vw, 22vw"
-						quality={74}
-					/>
-				</figure>
+				<div class="hero__copy">
+					<h1 class="hero__panel">
+						<span>きれいな姿勢、</span>
+						<span>私にもできることから。</span>
+						<span class="hero__daily">１日５分、セルフケア。</span>
+					</h1>
+					<p class="hero__lines">
+						<span>姿勢をスッと</span>
+						<span>背中をシュッと</span>
+						<span>ヒップをキュッと</span>
+					</p>
+				</div>
 				<p class="hero__scroll" aria-hidden="true">scroll</p>
 				<a class="hero__fab" href="https://lin.ee/WXtAYwP" target="_blank" rel="noopener noreferrer">
-					<span>美軸の<br />無料5大特典を<br />LINEで<br />受け取る</span>
+					<span>美軸の<br />無料3大特典を<br />LINEで<br />受け取る</span>
 				</a>
 			</div>
 		</section>
@@ -223,7 +196,7 @@ const receiveSteps = [
 		<section class="section concerns" id="concerns">
 			<div class="concerns__head" data-reveal>
 				<p class="eyebrow">For you</p>
-				<h2 class="heading">こんな感覚を、<br />抱えていませんか。</h2>
+				<h2 class="heading">こんな気持ち、ありませんか？</h2>
 				<p class="lead">
 					家事に、仕事に、誰かのために。身体のことは、あとまわしになりやすいものです。気になっている箇所が、ひとつでもあれば、そこが入り口です。
 				</p>
@@ -245,38 +218,45 @@ const receiveSteps = [
 
 		<section class="section gifts" id="gifts">
 			<div class="gifts__head" data-reveal>
-				<p class="eyebrow">Five gifts</p>
-				<h2 class="heading">公式LINEで届く、<br />美軸の無料5大特典。</h2>
+				<p class="eyebrow">Three gifts / 無料3大特典</p>
+				<h2 class="heading">身体を楽にしたい。<br />姿勢もきれいにしたい。<br />でも、何から始めたらいいかわからない。</h2>
+				<p class="lead">そんなあなたが、おうちで一歩を踏み出せるように。<br />座ってできるセルフケアと姿勢骨格診断を無料特典にまとめました。</p>
 			</div>
 			<div class="gifts__list">
 				{
 					gifts.map((gift) => (
 						<article class="gift" data-reveal>
-							<figure class="gift__photo">
-								<Image
-									src={gift.image}
-									alt={gift.alt}
-									widths={[480, 800, 1200]}
-									sizes="(max-width: 1080px) 92vw, 38vw"
-									quality={76}
-								/>
-								<figcaption>{gift.caption}</figcaption>
-							</figure>
+							{gift.num === '02' && (
+								<figure class="gift__photo">
+									<Image
+										src={chairExercise}
+										alt="椅子に座り、両手を頭の後ろに添えてエクササイズをしている様子"
+										widths={[480, 800, 1200]}
+										sizes="(max-width: 767px) 90vw, 38vw"
+										quality={76}
+									/>
+								</figure>
+							)}
 							<div class="gift__body">
 								<span class="gift__num">{gift.num}</span>
 								<h3>{gift.title}</h3>
-								<p class="gift__label">やること</p>
-								<p>{gift.doing}</p>
-								<p class="gift__label">気づけること</p>
-								<p>{gift.notice}</p>
-								{gift.note && <p class="gift__note">{gift.note}</p>}
+								{gift.text && <p>{gift.text}</p>}
+								{gift.effects.length > 0 && (
+									<>
+										<p class="gift__label">効果</p>
+										<ul class="gift__effects">
+											{gift.effects.map((effect) => <li>{effect}</li>)}
+										</ul>
+									</>
+								)}
+								{gift.after && <p class="gift__after">{gift.after}</p>}
 							</div>
 						</article>
 					))
 				}
 			</div>
 			<div class="gifts__cta" data-reveal>
-				<p>5つそろった状態で、公式LINEからお渡しします。</p>
+				<p>3つの無料特典を、公式LINEでご案内します。</p>
 				<LineCta />
 			</div>
 			<aside class="gifts__scope" data-reveal>
@@ -292,10 +272,7 @@ const receiveSteps = [
 		<section class="section home" id="home">
 			<div class="home__head" data-reveal>
 				<p class="eyebrow">At home</p>
-				<h2 class="heading">自宅では、<br />その日の自分に合わせて。</h2>
-				<p class="lead">
-					「1日10分」は、続けるときの目安です。動画ごとに長さは違い、椅子を使うもの、ペットボトルを添えるもの、立って歩くものがあります。
-				</p>
+				<h2 class="heading">おうちでできることから。<br />美軸セルフケアのポイント</h2>
 			</div>
 			<ol class="home__list">
 				{
@@ -308,28 +285,48 @@ const receiveSteps = [
 					))
 				}
 			</ol>
-			<p class="home__aside" data-reveal>
-				服装は普段着のままで大丈夫です。ペットボトルは、ご自宅にあるもので足ります。特別な日を待たず、今の体調で選べます。
-			</p>
 		</section>
 
 		<section class="section concept" id="concept">
 			<div class="concept__grid">
 				<div class="concept__copy" data-reveal>
 					<p class="eyebrow">Chaleur</p>
-					<h2 class="heading">温かさを、<br />身体の軸から。</h2>
-					<p class="concept__quote">
-						しゃるーるは、フランス語で「温かさ」。<br />
-						身体を追い込む場所ではなく、<br />
-						自分の軸に気づき、日常へ持ち帰れる場所でありたい。
-					</p>
+					<h2 class="heading">きれいな姿勢も、疲れにくい身体も。<br />身体の使い方を学ぶことから。</h2>
 					<div class="concept__body">
 						<p>
-							自分を大切にできるようになると、家族や大切な人にも、もっと優しくなれる。その笑顔が周りにも広がっていく。一人の温かさが、その人の大切な人へ、そしてその先へ。そう願って、この名前をつけました。
+							しゃるーるが考える「正しい姿勢」は、<br />
+							胸を張ったり、背すじを無理に伸ばしたりして<br />
+							頑張ってつくる形ではありません。
 						</p>
 						<p>
-							美軸とは、頭・背骨・骨盤が、無理のない位置でつながっている状態のこと。まずは知ることから。整え方は、今の身体に合わせます。
+							目指すのは、余計な力に頼らず、<br />
+							身体に負担の少ない位置で立ち、動けること。
 						</p>
+						<p>
+							そのために、つらい場所だけを見るのではなく、<br />
+							重心や、背骨・骨盤・股関節の動き、<br />
+							日々の身体の使い方を確認します。
+						</p>
+						<p>
+							まずは、動きやすい土台を整える。<br />
+							そして、整えた身体をどう使うかを学ぶ。
+						</p>
+						<p>
+							レッスンで感じたことを、<br />
+							おうちでの１日１０分につなげ、<br />
+							立つ・座る・歩くといった毎日の動きに<br />
+							少しずつ取り入れていきます。
+						</p>
+						<p>
+							整えてもらうだけでなく、<br />
+							身体を知り、自分で整えられるようになる。
+						</p>
+						<p>
+							一人ひとりの悩みや目標に寄り添い、<br />
+							無理のないペースで、<br />
+							美しさと動きやすさの両方を育てていく。
+						</p>
+						<p>それが、しゃるーるの美軸メソッドです。</p>
 					</div>
 				</div>
 				<figure class="concept__photo" data-reveal>
@@ -359,21 +356,41 @@ const receiveSteps = [
 						sizes="(max-width: 1080px) 92vw, 40vw"
 						quality={76}
 					/>
-					<figcaption>体験の様子</figcaption>
+					<figcaption><Icon name="ph:chat-circle-text" aria-hidden="true" /><span>体験の様子</span></figcaption>
 				</figure>
 				<div class="voice__quotes">
-					<blockquote class="voice__card" data-reveal>
-						<p>
-							マッサージに通っても、数日で戻る感じが気になっていました。重心や姿勢の癖を知るようになってから、自分で姿勢を思い出そうという気持ちになりました。
-						</p>
-						<footer>会社員の方の個人の感想</footer>
-					</blockquote>
-					<blockquote class="voice__card" data-reveal>
-						<p>
-							試着室で自分の後ろ姿を見たことが、姿勢を意識するきっかけでした。肩や骨盤の位置を知るうち、服を選ぶときの見方が変わり、着替える時間が楽しみになっています。
-						</p>
-						<footer>個人の感想</footer>
-					</blockquote>
+					<figure class="voice__card" data-reveal>
+						<div class="voice__card-head">
+							<span class="voice__badge">体験レビュー <span>01</span></span>
+							<Icon name="ph:quotes" aria-hidden="true" />
+						</div>
+						<h3 class="voice__title">自分で姿勢を思い出そうという気持ちに。</h3>
+						<blockquote class="voice__text">
+							<p>
+								マッサージに通っても、数日で戻る感じが気になっていました。重心や姿勢の癖を知るようになってから、自分で姿勢を思い出そうという気持ちになりました。
+							</p>
+						</blockquote>
+						<figcaption class="voice__author">
+							<span class="voice__avatar" aria-hidden="true"><Icon name="ph:user-circle" /></span>
+							<span class="voice__author-info"><span>会社員の方</span><small>個人の感想</small></span>
+						</figcaption>
+					</figure>
+					<figure class="voice__card" data-reveal>
+						<div class="voice__card-head">
+							<span class="voice__badge">体験レビュー <span>02</span></span>
+							<Icon name="ph:quotes" aria-hidden="true" />
+						</div>
+						<h3 class="voice__title">着替える時間が楽しみになっています。</h3>
+						<blockquote class="voice__text">
+							<p>
+								試着室で自分の後ろ姿を見たことが、姿勢を意識するきっかけでした。肩や骨盤の位置を知るうち、服を選ぶときの見方が変わり、着替える時間が楽しみになっています。
+							</p>
+						</blockquote>
+						<figcaption class="voice__author">
+							<span class="voice__avatar" aria-hidden="true"><Icon name="ph:user-circle" /></span>
+							<span class="voice__author-info"><span>体験された方</span><small>個人の感想</small></span>
+						</figcaption>
+					</figure>
 				</div>
 			</div>
 		</section>
@@ -398,13 +415,29 @@ const receiveSteps = [
 					</p>
 					<div class="profile__body">
 						<p>
-							シングルマザーとして17年、子育てと仕事に追われる日々を歩んできました。30代までは頑張ればなんとかなると思い、身体を追い込んでいました。40代後半、強い疲労感や長引く不調、隠しきれない体型の崩れに直面したとき、「このまま追い込むだけでいいのだろうか」と立ち止まりました。
+							子育てと仕事に追われ、身体のことはいつも後回し。<br />
+							「頑張れば何とかなる」と、私自身も身体を追い込んできました。
 						</p>
 						<p>
-							出会ったのは、無理に鍛えるのではなく、骨格や股関節の歪みを整え、正しく身体を使えるようにするコンディショニング。身体の使い方が変わると、心まで晴れやかになっていくのを、私自身が実感しました。
+							けれど、疲れや不調、姿勢や体型の変化を感じ、<br />
+							「このまま頑張り続けるだけでいいのかな」と立ち止まりました。
 						</p>
 						<p>
-							年齢で線を引かず、ご自身の身体と丁寧に向き合ってほしい。それが、しゃるーるで大切にしていることです。疲れた日は短く、余裕のある日は少し丁寧に。美軸を知るところから、一緒に始めていきましょう。
+							そこで出会ったのが、姿勢や重心を見直し、身体の使い方を学ぶこと。<br />
+							身体が動きやすくなるにつれ、気持ちまで明るくなる感覚がありました。
+						</p>
+						<p>
+							この経験を、同じように悩む方へ届けたい。<br />
+							きれいな姿勢も、楽に動ける身体も目指せるよう、一人ひとりに寄り添いたい。<br />
+							そんな想いで、しゃるーるを始めました。
+						</p>
+						<p>
+							しゃるーるは、フランス語で「温かさ」。<br />
+							ここが、身体をいたわり、ほっとできる場所であってほしい。
+						</p>
+						<p>
+							身体と心にゆとりが生まれ、その笑顔が家族や大切な人にも広がっていく。<br />
+							そんな温かいつながりを、この場所から育んでいきたいと思っています。
 						</p>
 					</div>
 				</div>
@@ -415,7 +448,7 @@ const receiveSteps = [
 			<div class="receive__inner" data-reveal>
 				<p class="eyebrow">How to receive</p>
 				<h2 class="heading">特典の受け取り方。</h2>
-				<p class="lead">ボタンの先は、すべて同じ公式LINEです。登録後、無料5大特典をトークで受け取れます。</p>
+				<p class="lead">ボタンの先は、すべて同じ公式LINEです。登録後、無料3大特典をご案内します。</p>
 				<ol class="receive__steps">
 					{
 						receiveSteps.map((step) => (
@@ -429,6 +462,17 @@ const receiveSteps = [
 						))
 					}
 				</ol>
+				<figure class="receive__guide">
+					<div class="receive__guide-crop">
+						<Image
+							src={giftGuide}
+							alt="LINEを追加し、特典を受け取り、家で試す3つのステップ"
+							widths={[640, 960, 1206]}
+							sizes="(max-width: 767px) calc(100vw - 2.5rem), (max-width: 815px) calc(100vw - 5rem), 46rem"
+							quality={80}
+						/>
+					</div>
+				</figure>
 				<LineCta />
 				<div class="receive__hp">
 					<p>サロンのご案内は、ホームページをご覧ください。</p>

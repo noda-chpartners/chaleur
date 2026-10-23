@@ -8,6 +8,7 @@ main {
 	p,
 	li {
 		line-break: strict;
+		overflow-wrap: anywhere;
 
 		@include mq($bp-xl) {
 			word-break: keep-all;
@@ -18,7 +19,6 @@ main {
 .hero {
 	position: relative;
 	display: grid;
-	place-items: center;
 	min-height: 100svh;
 	overflow: hidden;
 	background:
@@ -35,10 +35,8 @@ main {
 		&--lg {
 			left: -18%;
 			bottom: -6%;
-			width: 68vw;
-			height: 68vw;
-			max-width: 26rem;
-			max-height: 26rem;
+			width: min(68vw, 26rem);
+			height: min(68vw, 26rem);
 		}
 
 		&--md {
@@ -58,146 +56,109 @@ main {
 
 	&__stage {
 		position: relative;
-		width: min(100%, 30rem);
-		height: 100svh;
-		min-height: 40rem;
+		display: grid;
+		grid-template-areas: "copy" "photo";
+		gap: 1.75rem;
+		align-content: center;
+		width: min(calc(100% - 2.5rem), 34rem);
+		min-height: 100svh;
+		margin-inline: auto;
+		padding: calc(var(--header-h) + 1.5rem) 0 6rem;
 	}
 
 	&__portrait {
-		position: absolute;
+		grid-area: photo;
+		position: relative;
 		z-index: 1;
-		top: 12%;
-		left: 20%;
-		width: 50%;
-		height: 46%;
+		width: min(100%, calc(38svh * 1170 / 1617));
+		justify-self: center;
 		margin: 0;
 		overflow: hidden;
-		border-radius: 1.15rem;
+		border-radius: 1.25rem;
 		box-shadow: 0 16px 36px rgba(140, 90, 64, 0.12);
 
-		picture,
 		img {
 			width: 100%;
-			height: 100%;
+			height: auto;
 		}
+	}
 
-		img {
-			object-fit: cover;
-			object-position: center 22%;
-		}
+	&__copy {
+		grid-area: copy;
+		position: relative;
+		z-index: 3;
+		min-width: 0;
 	}
 
 	&__panel,
 	&__lines {
-		position: absolute;
-		z-index: 3;
-		display: flex;
-		flex-direction: row-reverse;
-		gap: 0.55rem;
 		margin: 0;
 		color: #7a4636;
 		font-family: $font-mincho;
 		font-weight: 500;
-		line-height: 1;
+		writing-mode: horizontal-tb;
 		word-break: normal;
+		overflow-wrap: anywhere;
 
 		span {
 			display: block;
-			letter-spacing: 0.18em;
-			writing-mode: vertical-rl;
-			text-orientation: upright;
 		}
 	}
 
 	&__panel {
-		top: 14%;
-		right: 4%;
-		padding: 0.7rem 0.55rem;
-		background: rgba(255, 252, 249, 0.86);
-		font-size: 0.98rem;
+		font-size: clamp(1.5rem, 6.4vw, 2.25rem);
+		font-weight: 600;
+		line-height: 1.8;
+		letter-spacing: 0.02em;
+	}
+
+	&__daily {
+		margin-top: 0.6rem;
+		color: $terracotta;
 	}
 
 	&__lines {
-		top: 37%;
-		right: 4%;
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.2rem 1em;
+		margin-top: 1.25rem;
 		color: #8a5342;
-		font-size: 0.72rem;
-
-		span {
-			letter-spacing: 0.1em;
-		}
-	}
-
-	&__thumb {
-		position: absolute;
-		z-index: 4;
-		margin: 0;
-		overflow: hidden;
-		border-radius: 0.35rem;
-		box-shadow: 0 10px 24px rgba(120, 72, 48, 0.12);
-
-		picture,
-		img {
-			width: 100%;
-			height: 100%;
-		}
-
-		img {
-			object-fit: cover;
-		}
-
-		&--wide {
-			top: 57%;
-			left: 7%;
-			width: 48%;
-			height: 16.5%;
-		}
-
-		&--small {
-			top: 69%;
-			left: 34%;
-			width: 36%;
-			height: 15%;
-			object-position: center 40%;
-		}
+		font-size: clamp(0.95rem, 3.8vw, 1.15rem);
+		line-height: 1.9;
+		letter-spacing: 0.06em;
 	}
 
 	&__scroll {
 		position: absolute;
 		z-index: 4;
 		left: 50%;
-		bottom: 0.85rem;
+		bottom: 1.25rem;
 		margin: 0;
 		color: rgba(122, 78, 58, 0.55);
 		font-family: $font-serif;
-		font-size: 0.68rem;
+		font-size: 0.75rem;
 		letter-spacing: 0.28em;
-		writing-mode: horizontal-tb;
 		transform: translateX(-50%);
 	}
 
 	&__fab {
 		position: absolute;
 		z-index: 5;
-		right: 5%;
-		bottom: 4.5%;
+		right: -0.25rem;
+		bottom: 3rem;
 		display: grid;
 		place-items: center;
-		width: 6.7rem;
-		height: 6.7rem;
+		width: 7rem;
+		height: 7rem;
 		border-radius: 50%;
 		background: $terracotta;
 		color: $white;
-		font-size: 0.68rem;
+		font-size: 0.75rem;
 		font-weight: 500;
-		line-height: 1.35;
+		line-height: 1.5;
 		letter-spacing: 0.06em;
 		text-align: center;
 		box-shadow: 0 12px 26px rgba(163, 77, 36, 0.28);
-
-		span {
-			display: block;
-		}
 
 		&:hover {
 			background: $terracotta-deep;
@@ -206,76 +167,39 @@ main {
 	}
 
 	@include mq($bp-md) {
-		&__bubble--md {
-			top: 10%;
-			right: 4%;
-			width: 3.4rem;
-			height: 3.4rem;
-		}
-
-		&__bubble--sm {
-			top: 7%;
-			right: 16%;
-		}
-
 		&__stage {
-			width: min(100% - 3rem, 88rem);
-			height: 100svh;
-			min-height: 38rem;
+			grid-template-areas: "photo copy";
+			grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+			gap: clamp(2rem, 4vw, 4.5rem);
+			align-items: center;
+			width: min(calc(100% - 5rem), 88rem);
+			padding-block: calc(var(--header-h) + 2rem) 5rem;
 		}
 
 		&__portrait {
-			top: 15%;
-			left: 5%;
-			width: 40%;
-			height: 50%;
-			border-radius: 1.35rem;
+			width: min(100%, calc(64svh * 1170 / 1617));
+			max-width: 32rem;
+			justify-self: center;
+			border-radius: 1.5rem;
 		}
 
 		&__panel {
-			top: 16%;
-			left: auto;
-			right: 14%;
-			padding: 0.95rem 0.75rem;
-			font-size: 1.15rem;
+			font-size: clamp(1.55rem, 2.6vw, 3rem);
+			line-height: 1.85;
 		}
 
 		&__lines {
-			top: 19%;
-			right: auto;
-			left: 64%;
-			font-size: 0.92rem;
-			gap: 0.5rem;
-		}
-
-		&__thumb--wide {
-			top: auto;
-			bottom: 11%;
-			left: 4%;
-			width: 34%;
-			height: 24%;
-		}
-
-		&__thumb--small {
-			top: auto;
-			bottom: 6%;
-			left: 20%;
-			width: 22%;
-			height: 21%;
+			gap: 0.35rem 1.2em;
+			margin-top: 2rem;
+			font-size: clamp(1rem, 1.4vw, 1.35rem);
 		}
 
 		&__fab {
-			top: auto;
-			right: 15%;
-			bottom: 6%;
-			left: auto;
-			width: 7.25rem;
-			height: 7.25rem;
-			font-size: 0.72rem;
-		}
-
-		&__scroll {
-			bottom: 1rem;
+			right: 0;
+			bottom: 2rem;
+			width: 8rem;
+			height: 8rem;
+			font-size: 0.8rem;
 		}
 	}
 
@@ -285,8 +209,6 @@ main {
 			bottom: -20%;
 			width: 34rem;
 			height: 34rem;
-			max-width: none;
-			max-height: none;
 		}
 
 		&__bubble--md {
@@ -296,58 +218,11 @@ main {
 			height: 7rem;
 		}
 
-		&__portrait {
-			top: 14%;
-			left: 4%;
-			width: 34%;
-			height: 58%;
-			border-radius: 1.5rem;
-		}
-
-		&__panel {
-			top: 18%;
-			left: auto;
-			right: 16%;
-			padding: 1.2rem 1rem;
-			font-size: clamp(1.55rem, 1.8vw, 2rem);
-		}
-
-		&__lines {
-			top: 22%;
-			left: 55%;
-			font-size: clamp(1.08rem, 1.25vw, 1.4rem);
-			gap: 0.7rem;
-
-			span {
-				letter-spacing: 0.14em;
-			}
-		}
-
-		&__thumb--wide {
-			bottom: 9%;
-			left: 3%;
-			width: 28%;
-			height: 26%;
-		}
-
-		&__thumb--small {
-			bottom: 5%;
-			left: 22%;
-			width: 18%;
-			height: 22%;
-		}
-
 		&__fab {
-			top: auto;
-			right: 20%;
+			right: 2%;
 			width: 9.25rem;
 			height: 9.25rem;
-			font-size: 0.82rem;
-		}
-
-		&__scroll {
-			bottom: 1.15rem;
-			font-size: 0.75rem;
+			font-size: 0.9rem;
 		}
 	}
 }
@@ -399,6 +274,7 @@ main {
 			color: $ink-soft;
 			font-size: 1.0625rem;
 			line-height: 2;
+			white-space: pre-line;
 		}
 	}
 
@@ -418,16 +294,17 @@ main {
 		@include container;
 		max-width: 46rem;
 		margin-bottom: 3.5rem;
+
+		.lead {
+			margin-top: 1.5rem;
+		}
 	}
 
 	&__list {
 		@include container($wide);
 		display: grid;
-		gap: 4.5rem;
-
-		@include mq($bp-md) {
-			gap: 6.5rem;
-		}
+		gap: 2rem;
+		max-width: 70rem;
 	}
 
 	&__cta {
@@ -482,11 +359,16 @@ main {
 .gift {
 	display: grid;
 	gap: 1.35rem;
+	padding: clamp(1.5rem, 4vw, 3rem);
+	background: $paper-soft;
+	border-radius: 1.25rem;
 
 	@include mq($bp-md) {
-		grid-template-columns: minmax(0, 0.86fr) minmax(0, 1.14fr);
-		gap: 3.5rem;
-		align-items: center;
+		&:has(.gift__photo) {
+			grid-template-columns: minmax(0, 0.86fr) minmax(0, 1.14fr);
+			gap: 3rem;
+			align-items: center;
+		}
 	}
 
 	&:nth-child(even) {
@@ -506,12 +388,6 @@ main {
 			border-radius: 1.25rem;
 		}
 
-		figcaption {
-			margin-top: 0.7rem;
-			color: $gold-deep;
-			font-size: 0.95rem;
-			letter-spacing: 0.08em;
-		}
 	}
 
 	&__num {
@@ -547,13 +423,20 @@ main {
 		line-height: 2;
 	}
 
-	&__note {
+	&__effects {
+		padding-left: 1.35em;
+		list-style: disc;
+		color: $ink-soft;
+		font-size: 1.0625rem;
+		line-height: 2;
+
+		li + li {
+			margin-top: 0.35rem;
+		}
+	}
+
+	&__after {
 		margin-top: 1rem;
-		padding-top: 0.9rem;
-		border-top: 1px solid $line;
-		color: $ink-mute;
-		font-size: 0.98rem;
-		line-height: 1.9;
 	}
 }
 
@@ -561,10 +444,6 @@ main {
 	&__head {
 		@include container;
 		max-width: 46rem;
-
-		.lead {
-			margin-top: 1.25rem;
-		}
 	}
 
 	&__list {
@@ -574,7 +453,7 @@ main {
 		margin-top: 2.75rem;
 
 		@include mq($bp-md) {
-			grid-template-columns: repeat(3, 1fr);
+			grid-template-columns: repeat(2, minmax(0, 1fr));
 			gap: 2rem;
 		}
 	}
@@ -605,17 +484,10 @@ main {
 			color: $ink-soft;
 			font-size: 1.02rem;
 			line-height: 1.95;
+			white-space: pre-line;
 		}
 	}
 
-	&__aside {
-		@include container;
-		max-width: 46rem;
-		margin-top: 1.75rem;
-		color: $ink-soft;
-		font-size: 1.0625rem;
-		line-height: 2.05;
-	}
 }
 
 .concept {
@@ -631,17 +503,11 @@ main {
 		}
 	}
 
-	&__quote {
-		margin: 1.4rem 0 1.5rem;
-		font-family: $font-mincho;
-		font-size: clamp(1.15rem, 2.2vw, 1.35rem);
-		line-height: 2;
-		letter-spacing: 0.05em;
-	}
 
 	&__body {
 		display: grid;
 		gap: 1.15rem;
+		margin-top: 1.5rem;
 
 		p {
 			color: $ink-soft;
@@ -699,34 +565,120 @@ main {
 		}
 
 		figcaption {
+			display: flex;
+			align-items: center;
+			gap: 0.5rem;
 			margin-top: 0.7rem;
 			color: $gold-deep;
+			font-size: 0.95rem;
 			letter-spacing: 0.1em;
 		}
 	}
 
 	&__quotes {
 		display: grid;
-		gap: 1.25rem;
+		gap: 1.5rem;
+		min-width: 0;
 	}
 
 	&__card {
-		padding: 1.6rem 1.4rem 1.45rem;
+		margin: 0;
+		padding: clamp(1.4rem, 3vw, 2.25rem);
 		background: $paper-soft;
+		border: 1px solid $line;
+		border-top: 3px solid rgba($gold, 0.55);
 		border-radius: 1.15rem;
+		box-shadow: 0 12px 32px rgba(58, 42, 34, 0.05);
+	}
 
-		p {
-			font-family: $font-mincho;
-			font-size: 1.15rem;
-			line-height: 2;
-			letter-spacing: 0.04em;
+	&__card-head {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 1rem;
+		margin-bottom: 1.2rem;
+
+		> [data-icon] {
+			width: 2rem;
+			height: 2rem;
+			color: rgba($gold, 0.55);
 		}
+	}
 
-		footer {
-			margin-top: 1rem;
+	&__badge {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.8rem;
+		padding: 0.3rem 0.9rem;
+		border-radius: 999px;
+		background: $paper-deep;
+		color: $terracotta;
+		font-size: 0.8rem;
+		font-weight: 500;
+		letter-spacing: 0.08em;
+
+		span {
+			padding-left: 0.8rem;
+			border-left: 1px solid $line-strong;
+			font-family: $font-serif;
+			font-size: 1rem;
+			line-height: 1;
+		}
+	}
+
+	&__title {
+		margin-bottom: 0.9rem;
+		color: $ink;
+		font-family: $font-mincho;
+		font-size: clamp(1.15rem, 2.2vw, 1.4rem);
+		font-weight: 500;
+		line-height: 1.8;
+		letter-spacing: 0.04em;
+	}
+
+	&__text {
+		margin: 0;
+		color: $ink-soft;
+		font-family: $font-sans;
+		font-size: 1rem;
+		line-height: 2;
+	}
+
+	&__author {
+		display: flex;
+		align-items: center;
+		gap: 0.8rem;
+		margin-top: 1.5rem;
+		padding-top: 1.1rem;
+		border-top: 1px solid $line;
+	}
+
+	&__avatar {
+		display: grid;
+		place-items: center;
+		flex-shrink: 0;
+		width: 2.8rem;
+		height: 2.8rem;
+		border-radius: 50%;
+		background: $paper-deep;
+		color: $gold-deep;
+
+		[data-icon] {
+			width: 1.9rem;
+			height: 1.9rem;
+		}
+	}
+
+	&__author-info {
+		display: grid;
+		gap: 0.15rem;
+		color: $ink-soft;
+		font-size: 0.9rem;
+		line-height: 1.6;
+
+		small {
 			color: $ink-mute;
-			font-size: 0.95rem;
-			letter-spacing: 0.06em;
+			font-size: 0.75rem;
 		}
 	}
 }
@@ -790,6 +742,24 @@ main {
 		radial-gradient(circle at 12% 18%, rgba(176, 138, 69, 0.2), transparent 26rem),
 		radial-gradient(circle at 90% 80%, rgba(227, 154, 104, 0.28), transparent 24rem),
 		$paper-deep;
+
+	&__guide {
+		width: 100%;
+		margin: 2.25rem 0 0;
+		overflow: hidden;
+		border-radius: 1.25rem;
+	}
+
+	&__guide-crop {
+		// Keep the three illustrated steps; replace the old five-gift banner with the live CTA below.
+		aspect-ratio: 1206 / 340;
+		overflow: hidden;
+
+		img {
+			width: 100%;
+			height: auto;
+		}
+	}
 
 	&__inner {
 		@include container;
